@@ -1,0 +1,6 @@
+"0","#Calculate tf-idf"
+"0","#desc_tf_idf <- nsf_funding %>% "
+"0","desc_tf_idf <- lemma_new %>% "
+"0","  count(id, word, sort = TRUE) %>%"
+"0","  ungroup() %>%"
+"0","  bind_tf_idf(word, id, n)"

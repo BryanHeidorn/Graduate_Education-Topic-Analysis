@@ -1,0 +1,6 @@
+"0","#Join abstracts to funding amount"
+"0","library(dplyr)"
+"0",""
+"0","nsf_amount <- data_frame(id = as.character(MyData$AwardNumber),"
+"0","                            title = MyData$AwardedAmountToDate)"
+"0","nsf_amount"

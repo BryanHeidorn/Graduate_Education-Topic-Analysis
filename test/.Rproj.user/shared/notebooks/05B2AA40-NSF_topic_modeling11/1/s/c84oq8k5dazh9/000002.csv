@@ -1,0 +1,63 @@
+"0","# This chink does a multidimentional scaling intertopic distance map."
+"0","    # Required packages"
+"0","    library(topicmodels)"
+"0","    library(dplyr)"
+"0","    library(stringi)"
+"0","    library(tm)"
+"0","    library(LDAvis)"
+"0","    library(devtools)"
+"2","Loading required package: usethis
+"
+"0","devtools::install_github(""cpsievert/LDAvisData"")"
+"2","Skipping install of 'LDAvisData' from a github remote, the SHA1 (43dd263a) has not changed since last install.
+  Use `force = TRUE` to force installation
+"
+"0","devtools::install_github(""cpsievert/LDAvis"")"
+"2","Skipping install of 'LDAvis' from a github remote, the SHA1 (5067f7b8) has not changed since last install.
+  Use `force = TRUE` to force installation
+"
+"0","#' Transform Model Output for Use with the LDAvis Package"
+"0","#' https://gist.github.com/trinker/477d7ae65ff6ca73cace"
+"0","#' Convert a \pkg{topicmodels} output into the JSON form required by the \pkg{LDAvis} package."
+"0","#'"
+"0","#' @param model A \code{\link[]{topicmodel}} object."
+"0","#' @param \ldots Currently ignored."
+"0","#' @seealso \code{\link[LDAvis]{createJSON}}"
+"0","#' @export"
+"0","#' @examples"
+"0","#' \dontrun{"
+"0","#' data(""AssociatedPress"", package = ""topicmodels"")"
+"0","#' model <- LDA(AssociatedPress[1:20,], control = list(alpha = 0.1), k = 3)"
+"0","#' LDAvis::serVis(topicmodels2LDAvis(model))"
+"0","#' }"
+"0","topicmodels2LDAvis <- function(x, ...){"
+"0","    post <- topicmodels::posterior(x)"
+"0","    if (ncol(post[[""topics""]]) < 3) stop(""The model must contain > 2 topics"")"
+"0","    mat <- x@wordassignments"
+"0","    LDAvis::createJSON("
+"0","        phi = post[[""terms""]], "
+"0","        theta = post[[""topics""]],"
+"0","        vocab = colnames(post[[""terms""]]),"
+"0","        doc.length = slam::row_sums(mat, na.rm = TRUE),"
+"0","        term.frequency = slam::col_sums(mat, na.rm = TRUE)"
+"0","    )"
+"0","}"
+"0","lda_json <- topicmodels2LDAvis(desc_lda)"
+"0","serVis(lda_json, reorder.topic = TRUE)"
+"2","Loading required namespace: servr
+"
+"2","Failed with error:  "
+"2",""
+"2","‘there is no package called ‘servr’’"
+"2",""
+"2","
+"
+"2","If the visualization doesn't render, install the servr package
+and re-run serVis: 
+ install.packages('servr') 
+Alternatively, you could configure your default browser to allow
+access to local files as some browsers block this by default
+"
+"0","library(RJSONIO)"
+"0","x <- fromJSON(lda_json)"
+"0"," "

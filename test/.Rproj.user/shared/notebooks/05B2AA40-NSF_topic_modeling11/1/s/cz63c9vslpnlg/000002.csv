@@ -1,0 +1,110 @@
+"0","#load packages koRupus and sylly"
+"0","library(dplyr)"
+"0","library(sylly)"
+"0","library(koRpus)"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","For information on available language packages for 'koRpus', run
+
+  available.koRpus.lang()
+
+and see ?install.koRpus.lang()
+
+"
+"2","
+Attaching package: ‘koRpus’
+
+"
+"2","The following object is masked from ‘package:readr’:
+
+    tokenize
+
+"
+"0","#install.koRpus.lang(""en"")"
+"0","library(koRpus.lang.en)"
+"0","# setup for lemmanization"
+"0","# Outside of R Install tree-tagger from https://cran.r-project.org/web/packages/koRpus/vignettes/koRpus_vignette.html"
+"0","# http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/#parfiles"
+"0","# to install tree-tagger in order to run koRpus in R"
+"0","system.time("
+"0","  lemma_tagged <- treetag(lemma_unique$word_clean, treetagger=""manual"", "
+"0","                          "
+"0","                          format=""obj"", TT.tknz=FALSE , lang=""en"","
+"0","                          TT.options=list("
+"0","                          path=""Applications/TreeTagger"", preset=""en""),"
+"0","                           debug=TRUE"
+"0","                          )"
+"0",")"
+"2","        split=[[:space:]]
+"
+"2","        ign.comp=-
+"
+"2","        heuristics=abbr
+"
+"2","        heur.fix=c(""’"", ""'""), c(""’"", ""'"")
+"
+"2","        sentc.end=., !, ?, ;, :
+"
+"2","        detect=FALSE, FALSE
+"
+"2","        clean.raw=
+"
+"2","        perl=FALSE
+"
+"2","        stopwords=
+"
+"2","        stemmer=
+"
+"2"," 
+          TT.tokenizer:  koRpus::tokenize() 
+          tempfile: /var/folders/gp/rs2l_qcn4nld9bwwl_c5y5wh0000gn/T//Rtmpq07u1C/tokenize2056224d1f7b.txt 
+          file:  /var/folders/gp/rs2l_qcn4nld9bwwl_c5y5wh0000gn/T//Rtmpq07u1C/tempTextFromObject20565d2ea8d0.txt 
+          TT.lookup.command:   
+          TT.pre.tagger:  grep -v '^$' | 
+          TT.tagger:  Applications/TreeTagger/bin/tree-tagger 
+          TT.opts:  -token -lemma -sgml -pt-with-lemma -quiet 
+          TT.extra.opts:   
+          TT.params:  /Users/zhengsongyi/Desktop/2022Spring/Capstone/test/Applications/TreeTagger/lib/english.par 
+          TT.filter.command:  | perl -pe 's/\tV[BDHV]/\tVB/;s/IN\/that/\tIN/;' 
+
+          sys.tt.call:  cat  /var/folders/gp/rs2l_qcn4nld9bwwl_c5y5wh0000gn/T//Rtmpq07u1C/tokenize2056224d1f7b.txt |  grep -v '^$' | Applications/TreeTagger/bin/tree-tagger -token -lemma -sgml -pt-with-lemma -quiet  /Users/zhengsongyi/Desktop/2022Spring/Capstone/test/Applications/TreeTagger/lib/english.par | perl -pe 's/\tV[BDHV]/\tVB/;s/IN\/that/\tIN/;' 
+
+"
+"2","Assuming 'UTF-8' as encoding for the input file. If the results turn out to be erroneous, check the file for invalid characters, e.g. em.dashes or fancy quotes, and/or consider setting 'encoding' manually.
+"
+"1","   user "
+"1"," system "
+"1","elapsed "
+"1","
+"
+"1","  0.998 "
+"1","  0.087 "
+"1","  1.049 "
+"1","
+"
+"0","# Make sure all packages including tidyverse is loaded or you may get an error that the preset is not recognized. In particular check koRpus.lang.en"
+"0",""
+"0","#lemma_tagged_tbl <- tbl_df(lemma_tagged@TT.res)"
+"0","#lemma_tagged_tbl <- tibble(lemma_tagged@TT.res)"
+"0","lemma_tagged_tbl <- as_tibble(lemma_tagged)"
+"0","# replace unknowns with the old raw word"
+"0","#lemma_unique <- lemma_unique %>% "
+"0","#  left_join(lemma_tagged_tbl %>%"
+"0","#              filter(lemma != ""<unknown>"") %>%"
+"0","#              select(token, lemma, wclass), by = c(""word_clean"" = ""token"")"
+"0","#            ) %>%"
+"0","#  arrange(word)"
+"0","# replace wclass w/ tag"
+"0","lemma_unique <- lemma_unique %>% "
+"0","  left_join(lemma_tagged_tbl %>%"
+"0","              filter(lemma != ""<unknown>"") %>%"
+"0","              select(token, lemma, tag), by = c(""word_clean"" = ""token"")"
+"0","            ) %>%"
+"0","  arrange(word)"
+"0",""
+"0","# Replace all NA with the word in word_clean"
+"0","lemma_unique = within(lemma_unique, {"
+"0","  lemma = ifelse(is.na(lemma), word_clean, lemma)  } )"
+"0",""

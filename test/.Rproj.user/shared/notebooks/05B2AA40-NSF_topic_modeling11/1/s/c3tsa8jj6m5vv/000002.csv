@@ -1,0 +1,24 @@
+"0","library(tm)"
+"2","Loading required package: NLP
+"
+"2","
+Attaching package: ‘NLP’
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    annotate
+
+"
+"2","
+Attaching package: ‘tm’
+
+"
+"2","The following object is masked from ‘package:koRpus’:
+
+    readTagged
+
+"
+"0","#myCorpus <- Corpus(VectorSource(nsf_funding$word)) "
+"0","myCorpus <- Corpus(VectorSource(lemma_new$word)) "
+"0",""

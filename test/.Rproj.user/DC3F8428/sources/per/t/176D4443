@@ -1,0 +1,27 @@
+{
+    "id": "176D4443",
+    "path": "~/Desktop/2022Spring/Capstone/test/NSF_topic_modeling11.Rmd",
+    "project_path": "NSF_topic_modeling11.Rmd",
+    "type": "r_markdown",
+    "hash": "2996890908",
+    "contents": "",
+    "dirty": false,
+    "created": 1642006396159.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "65,24",
+        "scrollLine": "53"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1642963381,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1642963381983,
+    "read_only": false,
+    "read_only_alternatives": []
+}

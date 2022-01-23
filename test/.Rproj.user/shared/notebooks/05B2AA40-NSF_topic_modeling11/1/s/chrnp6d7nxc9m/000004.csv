@@ -1,0 +1,15 @@
+"0","#create the toSpace content transformer"
+"0","toSpace <- content_transformer(function(x, pattern) {return (gsub(pattern, "" "", x))})"
+"0",""
+"0","#Strip digits (std transformation, so no need for content_transformer)"
+"0","myCorpus <- tm_map(myCorpus, removeNumbers)"
+"2","Warning in tm_map.SimpleCorpus(myCorpus, removeNumbers) :"
+"2","
+ "
+"2"," transformation drops documents
+"
+"0","dtm <- DocumentTermMatrix(myCorpus)"
+"0",""
+"0","freq <- colSums(as.matrix(dtm))"
+"2","Error: vector memory exhausted (limit reached?)
+"

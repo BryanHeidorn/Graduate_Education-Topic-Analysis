@@ -1,0 +1,4 @@
+"0","#See which documents misidentified, this is probably not useful for us, since documents can easily be in multiple topics"
+"0","doc_top %>%"
+"0","  inner_join(document_topics, by = ""topic"") %>%"
+"0","  count(document, consensus)"

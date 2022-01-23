@@ -1,0 +1,75 @@
+"0","# extract logliks from each topic"
+"0","library(""Rmpfr"")"
+"2","Loading required package: gmp
+"
+"2","
+Attaching package: ‘gmp’
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    %*%, apply, crossprod, matrix, tcrossprod
+
+"
+"2","C code of R package 'Rmpfr': GMP using 64 bits per limb
+
+"
+"2","
+Attaching package: ‘Rmpfr’
+
+"
+"2","The following object is masked from ‘package:gmp’:
+
+    outer
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    dbinom, dgamma, dnbinom, dnorm, dpois, dt, pnorm
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    cbind, pmax, pmin, rbind
+
+"
+"0","logLiks_many <- lapply(fitted_many, function(L)  L@logLiks[-c(1:(burnin/keep))])"
+"0",""
+"0","# compute harmonic means"
+"0","hm_many <- sapply(logLiks_many, function(h) harmonicMean(h))"
+"0",""
+"0","#Now that is have calculated the harmonic means of the models for 2 - 100 topics, you can plot the results using ggplot2 package."
+"0",""
+"0","require(scales)"
+"2","Loading required package: scales
+"
+"2","
+Attaching package: ‘scales’
+
+"
+"2","The following object is masked from ‘package:purrr’:
+
+    discard
+
+"
+"2","The following object is masked from ‘package:readr’:
+
+    col_factor
+
+"
+"0","ldaplot <- ggplot(data.frame(seqk, hm_many), aes(x=seqk, y=hm_many)) + geom_path(lwd=1.5) +"
+"0","  theme(text = element_text(family= NULL),"
+"0","        axis.title.y=element_text(vjust=1, size=16),"
+"0","        axis.title.x=element_text(vjust=-.5, size=16),"
+"0","        axis.text=element_text(size=16),"
+"0","        plot.title=element_text(size=20)) +"
+"0","  scale_y_continuous(labels = comma) +"
+"0","  xlab('Number of Topics') +"
+"0","  ylab('Harmonic Mean') +"
+"0","  ggplot2::annotate(""text"", x = 25, y = roundto10(max(hm_many)+10000), # calculate the max rather than hard code ???"
+"0","           label = paste(""The optimal number of topics is"", seqk[which.max(hm_many)])) +"
+"0","  ggtitle(expression(atop(""LDA Analysis of NSF Program"", "
+"0","                          atop(italic(""Harmonic Mean""), """"))))"
+"0"," "
+"0","png(paste(topicDir,""/LDAHamonicMean.png"", sep=""""), width=1280,height=800)"
+"0","ldaplot"

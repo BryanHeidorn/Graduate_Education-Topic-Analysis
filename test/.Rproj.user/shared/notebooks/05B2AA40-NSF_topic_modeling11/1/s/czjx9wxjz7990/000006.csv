@@ -1,0 +1,7 @@
+"0","# Plot the occurence frequencies"
+"0","wf=data.frame(term=names(freq),occurrences=freq)"
+"0","library(ggplot2)"
+"0","p <- ggplot(subset(wf, freq>20), aes(term, occurrences))"
+"0","p <- p + geom_bar(stat=""identity"")"
+"0","p <- p + theme(axis.text.x=element_text(angle=45, hjust=1))"
+"0","p"

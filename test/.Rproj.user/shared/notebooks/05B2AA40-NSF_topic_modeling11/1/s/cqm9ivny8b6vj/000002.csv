@@ -1,0 +1,11 @@
+"0","#Probability distribution in each topic"
+"0",""
+"0","ggplot(lda_gamma, aes(gamma, fill = as.factor(topic))) +"
+"0","  geom_histogram(show.legend = FALSE) +"
+"0","  facet_wrap(~ topic, ncol = 4) +"
+"0","  scale_y_log10() +"
+"0","  labs(title = ""Distribution of probability for each topic"","
+"0","       y = ""Number of documents"", x = expression(gamma))"
+"2","Error in ggplot(lda_gamma, aes(gamma, fill = as.factor(topic))) : 
+  could not find function ""ggplot""
+"

@@ -1,0 +1,1183 @@
+---
+title: "NSF-AST and DEB topic modeling - head"
+output: html_notebook
+
+---
+Useful tools... 
+to find NA in a column of a data frame: new_DF <- DF[is.na(DF$Var),] 
+eg. new_lemma_new <- lemma_new[is.na(lemma_new$word),]
+```{r}
+library(styler)
+
+#### Functions #####
+
+#--------------------
+readpercent <- function()
+{ 
+  n <- readline(prompt="Enter a percent, positive number selects head & negative selects tail[-100-100]: ")
+  if(!(grepl("^-?[0-9]+$",n)) || as.integer(n) > 100 || as.integer(n) < -100) #
+  {
+    return(readpercent())
+  }
+  return(as.integer(n))
+}
+
+#--------------------
+HistogramFun<-function(funding, fstatedPercent, numRows) {
+  cat("typeof funding",typeof(funding), "typeof nrows", typeof(numRows), "nrows funding ", typeof(numRows), "numRows::", numRows, "\n")
+  if (fstatedPercent < 0) {
+    color1 <- "gray"; 
+    color2 <- "gray40";
+    nInHead <- as.integer(((100 + fstatedPercent)/100) * numRows)
+    nInTail <- numRows - nInHead
+    headPercent <- fstatedPercent + 100
+    tailPercent <- abs(fstatedPercent)
+  } else {
+    color2 <- "gray"
+    color1 <- "gray40"
+    nInHead <- as.integer((fstatedPercent/100) * numRows)
+    nInTail <- numRows - nInHead
+    headPercent <- fstatedPercent
+    tailPercent <- 100 - fstatedPercent
+  }
+  cols = c(rep(color1, times = nInHead), rep(color2, times = nInTail))
+  #ylim= c(0, 3),  
+  barplot(funding, col = cols, border=cols, main = NULL, 
+          xpd = FALSE, las=1
+  )
+  
+  #legend("right", legend = c("Head (10%)", "Long Tail (90%)"), fill = c("gray40", "gray"), cex=.9)
+  legend("right", 
+         legend = c(paste("Head (", headPercent, "%)", sep = ""), 
+                    paste("Tail (", tailPercent, "%)", sep = "")), 
+         fill = c(color1, color2), cex=.9)
+  title("The focus for later analysis is shaded dark", cex.main=.95, line= -2) 
+  title(xlab="Size Ordered Grants - bar for each grant", line=0)
+  title(ylab="Dollar Value of Award in Millions", line = 2) 
+}
+```
+
+```{r}
+# Read in the file
+MyData <- read.csv("data/CNS.csv", header=TRUE, encoding = "UTF-8", stringsAsFactors=FALSE) # tab delimited
+
+# pull off the directory part of the file name to use later for saving output files.
+#topicDir <- tools::file_path_sans_ext(filename)
+topicDir <- "Awards_CNS"
+
+dir.create(topicDir, showWarnings = FALSE)
+
+
+
+# decide on which parts of the curve to analyze
+# User must enter the # on the console!
+library(dplyr)
+
+nsf_funding <- data_frame(id = as.character(MyData$AwardNumber),
+                          abstract = MyData$Abstract,
+                          amount = MyData$AwardedAmountToDate)
+# remove html tags in the form <anything>
+# ??? drop records with empty abstracts
+# changed PBH 2019-02-27 to put in a space when html is replaced
+nsf_funding$abstract <- gsub("<[^>]+>", " ", nsf_funding$abstract)
+# remove where the word is a number
+nsf_funding$abstract <- gsub("\\d", "", nsf_funding$abstract)
+# if there are any "words" with imbedded periods Eg "John.P.Doud, replace the peroid with a space.
+nsf_funding$abstract <- gsub("\\.", " ", nsf_funding$abstract)
+# remove "'s"
+nsf_funding$abstract <- gsub("'s", "", nsf_funding$abstract) # to fix eg trichoptera:hydropsychidae 
+nsf_funding$abstract <- gsub(":", " ", nsf_funding$abstract)
+#nsf_funding$abstract <- nsf_funding[-grep('^\\d+$', nsf_funding$abstract),]
+# Convert the string repreentation of numbers in the amount field by removing "$" and ","
+nsf_funding$amount <- as.numeric(gsub('[$,]', '', nsf_funding$amount))
+
+# sort the abstracts by the amount awarded
+#abstract_sort <- nsf_funding %>% 
+nsf_funding <- nsf_funding[order(-nsf_funding$amount), ]
+
+statedPercent <- 100
+# if statedPercent is not set in the code ask the user
+if(!exists("statedPercent")){statedPercent <- readpercent();}
+# if it is negative then it is really the tail and the head is the length the array minus that amount
+
+#This displays on the screen
+HistogramFun(nsf_funding$amount/1000000, statedPercent, nrow(nsf_funding))
+#This saves a file
+png(paste(topicDir,"/focusHistogram.png", sep=""), width = 5, height = 4, units = 'in', res = 300)
+HistogramFun(nsf_funding$amount/1000000, statedPercent, nrow(nsf_funding))
+dev.off()
+if (statedPercent != 100) {
+  # Only do this if you want to only analyse part of the collection
+  nsf_funding <- head(nsf_funding, as.integer(nrow(nsf_funding)*(headpercent/100)))
+}
+```
+
+For astronomy data may need to hide the few big projects to see the curve.
+
+
+```{r}
+## !!! (Need consider the stop word)
+### Only run this to use custom stop words. ####
+library(tidytext)
+#Custom stop words
+#adapt for Bio!!!
+my_stop_words <- bind_rows(stop_words, 
+                           data_frame(word = c("formation", "science", "stars", "galaxies",
+                                               "data", "star",
+                                               "project", "astronomy", "research", "students", "galaxy",
+                                               "program", "public", "observations", "study",
+                                               "graduate", "results", "team", "award",
+                                               "dr", as.character(1:12)),
+                                                
+                                      lexicon = rep("custom", 32)))
+```
+
+
+
+
+```{r}
+library(tidyverse) # R is better when it is tidy
+library(stringr)  # for string manipulation
+# Save copy of abstracts for bigram work
+library(tidytext)
+nsf_funding_bigram <- nsf_funding
+nsf_funding_save <- nsf_funding # This will be used to find bigrams in the documents.
+
+nsf_funding <- nsf_funding %>% 
+  unnest_tokens(word, abstract)  %>% 
+  #anti_join(my_stop_words) # Add custom stop words.
+  anti_join(stop_words) # Use normal stop words.
+# remove rows that are null.
+#nsf_funding <- nsf_funding[!(nsf_funding$word == null), ]
+nsf_funding <- nsf_funding[!is.null(nsf_funding$word) ]
+nsf_funding %>% filter(nsf_funding$word != "null" )
+nsf_funding_bigram <- nsf_funding_bigram %>% 
+  unnest_tokens(bigram, abstract, token = "ngrams", n = 2) %>% 
+  #anti_join(my_stop_words) # Add custom stop words.
+  anti_join(stop_words, by = c("bigram" = "word")) # Use normal stop words.
+lemma_unique <- nsf_funding %>%
+  select(word) %>%
+  mutate(word_clean = str_replace_all(word,"\u2019s|'s","")) %>%
+#  mutate(word_clean = ifelse(str_detect(word_clean,"[^[:alpha:]]"),NA,word_clean)) %>%
+  # this :alpha: causes problems with UTF-8
+ # mutate(word_clean = ifelse(str_detect(word_clean,"[^[:alpha:]]"),NA,word_clean)) %>%
+  filter(!duplicated(word_clean)) %>%
+  filter(!is.na(word_clean)) %>%
+  arrange(word)
+```
+
+
+```{r}
+#load packages koRupus and sylly
+library(dplyr)
+library(sylly)
+library(koRpus)
+#install.koRpus.lang("en")
+library(koRpus.lang.en)
+# setup for lemmanization
+# Outside of R Install tree-tagger from https://cran.r-project.org/web/packages/koRpus/vignettes/koRpus_vignette.html
+# http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/#parfiles
+# to install tree-tagger in order to run koRpus in R
+system.time(
+  lemma_tagged <- treetag(lemma_unique$word_clean, treetagger="manual", 
+                          
+                          format="obj", TT.tknz=FALSE , lang="en",
+                          TT.options=list(
+                          path="Applications/TreeTagger", preset="en"),
+                           debug=TRUE
+                          )
+)
+# Make sure all packages including tidyverse is loaded or you may get an error that the preset is not recognized. In particular check koRpus.lang.en
+
+#lemma_tagged_tbl <- tbl_df(lemma_tagged@TT.res)
+#lemma_tagged_tbl <- tibble(lemma_tagged@TT.res)
+lemma_tagged_tbl <- as_tibble(lemma_tagged)
+# replace unknowns with the old raw word
+#lemma_unique <- lemma_unique %>% 
+#  left_join(lemma_tagged_tbl %>%
+#              filter(lemma != "<unknown>") %>%
+#              select(token, lemma, wclass), by = c("word_clean" = "token")
+#            ) %>%
+#  arrange(word)
+# replace wclass w/ tag
+lemma_unique <- lemma_unique %>% 
+  left_join(lemma_tagged_tbl %>%
+              filter(lemma != "<unknown>") %>%
+              select(token, lemma, tag), by = c("word_clean" = "token")
+            ) %>%
+  arrange(word)
+
+# Replace all NA with the word in word_clean
+lemma_unique = within(lemma_unique, {
+  lemma = ifelse(is.na(lemma), word_clean, lemma)  } )
+
+```
+
+```{r}
+#replace all of the original words in the nsf_funding with lemmas
+# This also needs to be done for the bigrams where the substatution happens for each of the two columns in the bigram. ???
+lemma_new <- lemma_unique
+#lemma_new <- left_join(nsf_funding,lemma_new, by = "word")
+lemma_new <- left_join(nsf_funding,lemma_new, by = "word") %>%
+  mutate(word = ifelse(is.na(lemma), word_clean, lemma)) # %>%
+lemma_new <- subset(lemma_new, select = c(id, word))
+lemma_new[is.na(lemma_new$word),]
+
+```
+There should be no NA words!!! if so there is a problem with the input... UTF conversion problem.
+```{r}
+library(tm)
+#myCorpus <- Corpus(VectorSource(nsf_funding$word)) 
+myCorpus <- Corpus(VectorSource(lemma_new$word)) 
+
+```
+
+```{r}
+#create the toSpace content transformer
+toSpace <- content_transformer(function(x, pattern) {return (gsub(pattern, " ", x))})
+
+#Strip digits (std transformation, so no need for content_transformer)
+myCorpus <- tm_map(myCorpus, removeNumbers)
+
+dtm <- DocumentTermMatrix(myCorpus)
+
+freq <- colSums(as.matrix(dtm))
+
+#create sort order (descending)
+ord <- order(freq,decreasing=TRUE)
+
+#inspect most frequently occurring terms
+freq[head(ord)]
+#inspect least frequently occurring terms
+freq[tail(ord)]
+```
+
+
+```{r}
+# Plot the occurence frequencies
+wf=data.frame(term=names(freq),occurrences=freq)
+library(ggplot2)
+p <- ggplot(subset(wf, freq>20), aes(term, occurrences))
+p <- p + geom_bar(stat="identity")
+p <- p + theme(axis.text.x=element_text(angle=45, hjust=1))
+p
+```
+
+```{r}
+#wordcloud
+library(wordcloud)
+#setting the same seed each time ensures consistent look across clouds
+set.seed(42)
+png(paste(topicDir,"/FreqWordCloud.png", sep=""), width=1280,height=800)
+#limit words by specifying min frequency
+wordcloud(names(freq),freq, max.words=100, scale=c(4,.2), colors=brewer.pal(6,"Dark2"))
+while (!is.null(dev.list()))  dev.off()
+#Second call puts the cloud image on the screen
+wordcloud(names(freq), freq, max.words=100, scale=c(4,.2), colors=brewer.pal(6,"Dark2"))
+
+```
+
+```{r}
+##Topic Modeling using lemmas
+
+#word_counts <- nsf_funding %>%
+word_counts <- lemma_new %>%
+  #anti_join(my_stop_words) %>%
+  count(id, word, sort = TRUE) %>%
+  ungroup()
+
+word_counts
+```
+
+```{r}
+#Remove numbers
+#word_counts<-word_counts[-grep("\\b\\d+\\b", word_counts$word),]
+
+desc_dtm <- word_counts %>%
+  cast_dtm(id, word, n)
+
+desc_dtm
+```
+
+```{r}
+#Calculate tf_idf
+#word_counts <- word_counts %>%
+ #bind_tf_idf(id, word, n)
+#word_counts
+```
+
+```{r}
+#Continue tf_idf
+#word_counts %>%
+  #arrange(tf_idf)
+```
+
+
+```{r}
+#Calculate tf-idf
+#desc_tf_idf <- nsf_funding %>% 
+desc_tf_idf <- lemma_new %>% 
+  count(id, word, sort = TRUE) %>%
+  ungroup() %>%
+  bind_tf_idf(word, id, n)
+```
+
+
+#New document term matrix for topic modeling with custom stop words
+#??? rather than low idf use low tf_idf - may be replaced with a trim of the word list by ft-idf
+low_idf <- subset(desc_tf_idf, idf>0.38 & idf<2)
+#topicFileName <- gsub(".csv","low_idf.csv", filename)
+write.csv(low_idf,paste(topicDir,"/low_idf.csv", sep=""))
+
+
+
+
+```{r}
+#What are highest tf-idf words? (*)
+desc_tf_idf %>% 
+  arrange(-tf_idf)
+```
+
+
+```{r}
+#What are lowest idf words?
+desc_tf_idf %>% 
+  arrange(idf)
+```
+
+
+
+
+
+
+
+
+```{r}
+freq <- colSums(as.matrix(desc_dtm))
+
+#create sort order (descending)
+ord <- order(freq,decreasing=TRUE)
+
+#inspect most frequently occurring terms
+freq[head(ord)]
+```
+
+```{r}
+#inspect least frequently occurring terms
+freq[tail(ord)]
+```
+
+```{r}
+#Ignore this maybe??? do not use.
+#wf=data.frame(term=names(freq),occurrences=freq)
+#library(ggplot2)
+#topicFileName <- gsub(".csv","tf-idfhistogram.png", filename)
+#p <- ggplot(subset(wf, freq>250), aes(term, occurrences))
+#p <- p + geom_bar(stat="identity")
+#p <- p + theme(axis.text.x=element_text(angle=45, hjust=1))
+#p
+#ggsave(topicFileName, device = "png")
+```
+
+```{r}
+
+#wordcloud
+library(wordcloud)
+#setting the same seed each time ensures consistent look across clouds
+set.seed(42)
+png(paste(topicDir,"/TF-IDFWordCloud.png", sep=""), width=1280,height=800)
+#limit words by specifying min frequency
+#wordcloud(names(freq),freq, min.freq=80,colors=brewer.pal(6,"Dark2"))
+wordcloud(names(freq),freq, min.freq=20,scale=c(4,.2), colors=brewer.pal(6,"Dark2"))
+while (!is.null(dev.list()))  dev.off()
+wordcloud(names(freq),freq, min.freq=20,scale=c(4,.2), colors=brewer.pal(6,"Dark2"))
+
+```
+
+https://cran.r-project.org/web/packages/ldatuning/vignettes/topics.html
+Select number of topics for LDA model
+Murzintcev Nikita
+2016-10-24
+
+Package can be installed from CRAN
+Package ldatuning realizes 4 metrics to select perfect number of topics for LDA model.
+```{r fig.width=11}
+#LDA Tuning: Pick the Number of topics
+#install.packages("ldatuning")
+# Changed method in the exmaple from "Gibbs"" to "VEM" to mathc the Nasa Example
+library("ldatuning")
+library(topicmodels)
+system.time(
+  result <- FindTopicsNumber(
+  desc_dtm,
+  topics = seq(from = 10, to = 50, by = 1),
+  metrics = c("Griffiths2004", "CaoJuan2009", "Arun2010", "Deveaud2014"),
+  method = "Gibbs",
+  control = list(seed = 1234),
+  mc.cores = 4L,
+  verbose = TRUE
+))
+png(paste(topicDir,"/FindTopicNumber.png", sep=""), width=1280,height=800)
+FindTopicsNumber_plot(result)
+while (!is.null(dev.list()))  dev.off()
+FindTopicsNumber_plot(result)
+```
+Gibbs method consensus shows a peak of 23 for the DEB data
+Gibbs method consensus shows a peak of 30 for the AST data
+
+```{r}
+harmonicMean <- function(logLikelihoods, precision = 2000L) {
+  llMed <- median(logLikelihoods)
+  as.double(llMed - log(mean(exp(-mpfr(logLikelihoods,
+                                       prec = precision) + llMed))))
+}
+```
+
+```{r}
+seqk <- seq(2, 100, 1)
+burnin <- 1000
+iter <- 1000
+keep <- 50
+system.time(fitted_many <- lapply(seqk, function(k) topicmodels::LDA(desc_dtm, k = k,
+                                                     method = "Gibbs",control = list(burnin = burnin,
+                                                                         iter = iter, keep = keep) )))
+roundto10 <- function(x) ceiling(max(x)/10)*10
+```
+
+```{r}
+# extract logliks from each topic
+library("Rmpfr")
+logLiks_many <- lapply(fitted_many, function(L)  L@logLiks[-c(1:(burnin/keep))])
+
+# compute harmonic means
+hm_many <- sapply(logLiks_many, function(h) harmonicMean(h))
+
+#Now that is have calculated the harmonic means of the models for 2 - 100 topics, you can plot the results using ggplot2 package.
+
+require(scales)
+ldaplot <- ggplot(data.frame(seqk, hm_many), aes(x=seqk, y=hm_many)) + geom_path(lwd=1.5) +
+  theme(text = element_text(family= NULL),
+        axis.title.y=element_text(vjust=1, size=16),
+        axis.title.x=element_text(vjust=-.5, size=16),
+        axis.text=element_text(size=16),
+        plot.title=element_text(size=20)) +
+  scale_y_continuous(labels = comma) +
+  xlab('Number of Topics') +
+  ylab('Harmonic Mean') +
+  ggplot2::annotate("text", x = 25, y = roundto10(max(hm_many)+10000), # calculate the max rather than hard code ???
+           label = paste("The optimal number of topics is", seqk[which.max(hm_many)])) +
+  ggtitle(expression(atop("LDA Analysis of NSF Program", 
+                          atop(italic("Harmonic Mean"), ""))))
+ 
+png(paste(topicDir,"/LDAHamonicMean.png", sep=""), width=1280,height=800)
+ldaplot
+while (!is.null(dev.list()))  dev.off()
+ldaplot
+```
+
+```{r}
+#Harmonic mean above has optimum of 20 for combined collaborations in astronomy. Prior analysis used 22 but the peak is about the same.
+#Inspired by: https://www.tidytextmining.com/nasa.html#topic-modeling
+library(topicmodels)
+
+#Harmonic mean was 34 topics but 29 is almost the same; 
+# [23] -408680.1 -407910.1 -408071.9 -407422.7 -407173.9 -406342.0 -407583.3 -407614.1 -407782.2 -408115.3 -405507.6
+# be aware that running this model is time intensive
+NumTopics <- 18
+desc_lda <- LDA(desc_dtm, method = "Gibbs", k = NumTopics, control = list(seed = 1234))
+desc_lda
+# Since it is time consuming to create the desc_lda file we save it here for backup. 
+saveRDS(desc_lda, file = paste(topicDir,"/desc_lda.rds", sep = ""))
+# to get it back desc_lda <- load(paste(topicDir,"/desc_lda.RData"))
+```
+
+```{r}
+library(tidytext)
+tidy_lda <- tidy(desc_lda)
+
+tidy_lda
+```
+
+```{r}
+#Examine top 10 terms for each topic
+top_terms <- tidy_lda %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+
+top_terms
+```
+
+```{r}
+
+#https://tm4ss.github.io/docs/Tutorial_6_Topic_Models.html
+
+top10termsPerTopic <- terms(desc_lda, 10)
+topicNames <- apply(top10termsPerTopic, 2, paste, collapse=" ")
+
+# have a look at some of the results (posterior distributions)
+tmResult <- posterior(desc_lda)
+```
+
+```{r}
+library(wordcloud)
+# visualize topics as word cloud
+for (TopicNum in 1:NumTopics){
+  set.seed(42)
+  topicToViz <- TopicNum # change for your own topic of interest
+  #topicToViz <- 1 # change for your own topic of interest
+  #topicToViz <- grep('telescope', topicNames)[1] # Or select a topic by a term contained in its name
+  # select to 100 most probable terms from the topic by sorting the term-topic-probability vector in decreasing order
+  top100terms <-
+  sort(tmResult$terms[topicToViz, ], decreasing = TRUE)[1:100]
+  words <- names(top100terms)
+  # extract the probabilites of each of the 100 terms
+  probabilities <-
+  sort(tmResult$terms[topicToViz, ], decreasing = TRUE)[1:100]
+  # visualize the terms as wordcloud
+  mycolors <- brewer.pal(8, "Dark2")
+  #topicFileName <- gsub(".csv", paste("Topic", toString(TopicNum), "WordCloud.png", sep = ""), filename) 
+  png(paste(topicDir,"/WordCloud.png", sep=""), width = 1280, height = 800)
+  while (!is.null(dev.list()))  dev.off()
+  wordcloud(
+  words,
+  probabilities,
+  scale = c(4, .2),
+  random.order = FALSE,
+  color = mycolors
+  )
+  dev.off()
+  wordcloud(
+  words,
+  probabilities,
+  scale = c(4, .2),
+  random.order = FALSE,
+  color = mycolors
+  )
+}
+```
+
+
+
+
+```{r fig.height=30}
+library(ggplot2)
+png(paste(topicDir,"/TermsLDAHistogram.png", sep=""), width = 1280, height = 1600)
+top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  group_by(topic, term) %>%    
+  arrange(desc(beta)) %>%  
+  ungroup() %>%
+  mutate(term = factor(paste(term, topic, sep = "__"), 
+                       levels = rev(paste(term, topic, sep = "__")))) %>%
+  ggplot(aes(term, beta, fill = as.factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_x_discrete(labels = function(x) gsub("__.+$", "", x)) +
+  labs(title = "Top terms in each LDA topic",
+       x = NULL, y = expression(beta)) +
+  facet_wrap(~ topic, ncol = 3, scales = "free")
+#topicFileName <- gsub(".csv","TermsLDAHistogram.png", filename)
+#ggsave(topicFileName, height = 14, device = "png")
+#png(paste(topicDir,"/TermsLDAHistogram.png", sep=""), width = 1280, height = 1600)
+while (!is.null(dev.list()))  dev.off()
+```
+
+```{r fig.height=30}
+# Calculate the top terms in each topic
+top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  group_by(topic, term) %>%    
+  arrange(desc(beta)) %>%  
+  ungroup() %>%
+  mutate(term = factor(paste(term, topic, sep = "__"), 
+                       levels = rev(paste(term, topic, sep = "__")))) %>%
+  ggplot(aes(term, beta, fill = as.factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  scale_x_discrete(labels = function(x) gsub("__.+$", "", x)) +
+  labs(title = "Top terms in each LDA topic",
+       x = NULL, y = expression(beta)) +
+  facet_wrap(~ topic, ncol = 3, scales = "free")
+```
+
+```{r}
+#Top 10 terms in each model
+
+terms(desc_lda, 10)
+```
+
+```{r}
+##Examine which topics are associated with which documents
+
+lda_gamma <- tidy(desc_lda, matrix = "gamma")
+
+lda_gamma
+```
+
+```{r fig.height=15, fig.width=10}
+
+library(data.table)
+# Change the index to be a column. nsf_funding_save is in funding order.
+setDT(nsf_funding_save, keep.rownames = TRUE)[]
+#Change the column name form the "rn" defaculty to "FundingRank"
+colnames(nsf_funding_save)[1] <- "FundingRank"
+# Change class of nsf_funding_save$id to charcater(from integer)
+nsf_funding_save$id <- as.character(nsf_funding_save$id)
+lda_gamma2 <- dplyr::left_join(lda_gamma, nsf_funding_save, 
+              select(FundingRank), by = c("document" = "id")) 
+# convert FundingRank to a number
+lda_gamma2$FundingRank = as.numeric(lda_gamma2$FundingRank)#[lda_gamma2]
+# convert Topic to a character
+
+# Sort the topics by the amont of monney they braught in. Sum of document Gamma = 1
+# The funding associated with each topic is the 
+# sum of all (gamma*funding amount for each grant)
+lda_gamma2 <- lda_gamma2 %>% mutate(worth = gamma * amount)
+# calculate the sum of the worth for each topic
+topic_worth <- aggregate(lda_gamma2$worth, by=list(topic = lda_gamma2$topic), FUN = "sum")
+#topic_worth <- aggregate(lda_gamma2$worth, by=list(topic = as.character(lda_gamma2$topic)), FUN = "sum")
+colnames(topic_worth)[2] <- "WorthSum"
+# sort by most worthy of topic
+topic_worth <- topic_worth %>% arrange(desc(WorthSum))
+# save topic_worth as CVS
+
+setDT(topic_worth, keep.rownames = "TopicWorthRank")[]
+
+lda_gamma3 <- left_join(lda_gamma2, topic_worth, 
+              select(x, TopicWorthRank), by = "topic") 
+lda_gamma3$TopicWorthRank = as.numeric(lda_gamma3$TopicWorthRank)
+
+p <- ggplot(lda_gamma3, aes(x=FundingRank, y=TopicWorthRank)) +
+    geom_point(aes(size=gamma), shape = 17) +   # draw points
+    scale_size_continuous(limits=c(.2,1)) +
+    xlim(c(0, length(nsf_funding_save$id))) + 
+   ylim(c(1, NumTopics)) +
+   labs(subtitle="Topic by Document", 
+       y="Topic #", 
+       x="Document #", 
+       title="Gamma Level sorted by Funding Level", 
+       caption="Topic Analysis")
+p
+ggsave(paste(topicDir,"/DocTopic.png", sep=""), height = 10, device = "png")
+#png(paste(topicDir,"/TermsLDAHistogram.png", sep=""), width = 1280, height = 1600)
+while (!is.null(dev.list()))  dev.off()
+p
+```
+
+```{r}
+
+#Join funding amount to data
+nsf_funding_join <- nsf_funding_save
+nsf_funding_join$document <- as.character(nsf_funding_join$id)
+
+funding_gamma <- merge(lda_gamma, nsf_funding_join, by="document", all.x = TRUE)
+  funding_gamma <- subset(funding_gamma, select=-c(id, abstract))
+  
+funding_gamma
+
+```
+
+
+```{r}
+#Need to join lda_gamma with funding amount vector, that would be informative
+doc_top <- funding_gamma %>%
+  group_by(document) %>%
+#  top_n(1, gamma) %>%
+  top_n(5, gamma) %>%
+  ungroup() %>%
+#  arrange(gamma)
+  arrange(document, desc(gamma))
+write.csv(doc_top, paste(topicDir,"/topTopics5Documents.csv", sep=""))
+
+doc_top
+```
+
+```{r}
+#Consensus document for each topic
+document_topics <- doc_top %>%
+  count(document, topic, amount) %>%
+  group_by(topic) %>%
+  top_n(1, n) %>%
+  ungroup() %>%
+  transmute(consensus = document, topic, amount)
+
+document_topics
+```
+
+```{r}
+#See which documents misidentified, this is probably not useful for us, since documents can easily be in multiple topics
+doc_top %>%
+  inner_join(document_topics, by = "topic") %>%
+  count(document, consensus)
+```
+
+
+```{r}
+#I THINK THIS IS ORDERED BY FUNDING AMOUNT NOW. WOULD LIKE TO SEE WHAT HAPPENS WITH A BETTER COLOR SCHEME AND TOPIC CATEGORIES INSTEAD OF INDIVIDUAL TOPICS.
+
+#Visualize which documents have the highest probability of being generated from each topic
+#Too big
+#Maybe can adapt for programs instead of documents
+library(flexdashboard)
+library(shiny)
+library(dplyr)
+library(stm)
+library(quanteda)
+library(tidytext)
+library(ggplot2)
+library(scales)
+
+p <- funding_gamma %>% 
+    mutate(document = factor(document, levels = rev(unique(document)))) %>%
+    group_by(document) %>%
+    top_n(1) %>%
+    ungroup %>%
+    ggplot(aes(reorder(document, amount), y=gamma, label = NA, fill = as.factor(topic))) +
+    geom_col() +
+    geom_text(aes(document, 0.01), hjust = 0,
+              color = "white", size = .5) +
+    scale_fill_manual(values = c("#F48024", "#0077CC", "#5FBA7D", 
+                                 "#8C60A7", "#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", 
+"#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", 
+"#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", 
+"#8A7C64", "#599861", "#A48024", "#B077CC", "#CFBA7D", "#DFBA7D")) +
+    scale_y_continuous(expand = c(0,0),
+                       labels = percent_format()) +
+    coord_flip() + 
+    theme_minimal() +
+    theme(axis.text.y=element_blank()) +
+    labs(x = NULL, y = expression(gamma), fill = "Topic")  
+p
+ggsave(paste(topicDir,"/TopicGammaMap.png", sep=""), height = 10, device = "png")
+#png(paste(topicDir,"/TermsLDAHistogram.png", sep=""), width = 1280, height = 1600)
+# while (!is.null(dev.list()))  dev.off()
+p
+```
+
+
+# NO NOT USE THIS CHUNK. Use the next one to make lda_json for use in LDAvis package
+#In this chunk I was trying to use LDAvis package, but was unable to convert topicmodels output
+
+#install.packages("LDAvis")
+#devtools::install_github("cpsievert/LDAvisData")
+
+#' Convert the output of a topicmodels Latent Dirichlet Allocation to JSON
+#' for use with LDAvis
+#'
+#' @param fitted Output from a topicmodels \code{LDA} model. = desc_lda
+#' @param corpus Corpus object used to create the document term
+#' matrix for the \code{LDA} model. This should have been create with
+#' the tm package's \code{Corpus} function. = myCorpus
+#' @param doc_term The document term matrix used in the \code{LDA}
+#' model. This should have been created with the tm package's 
+#' \code{DocumentTermMatrix} function. = dtm
+#'
+#' @seealso \link{LDAvis}.
+#' @export
+
+
+topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
+    # Required packages
+    library(topicmodels)
+    library(dplyr)
+    library(stringi)
+    library(tm)
+    library(LDAvis)
+
+    # Find required quantities
+   phi <- posterior(fitted)$terms %>% as.matrix
+   theta <- posterior(fitted)$topics %>% as.matrix
+   vocab <- colnames(phi)
+   doc_length <- vector()
+   for (i in 1:length(corpus)) {
+       temp <- paste(corpus[[i]]$content, collapse = ' ')
+       doc_length <- c(doc_length, stri_count(temp, regex = '\\S+'))
+  }
+  
+  temp_frequency <- as.matrix(doc_term)
+  freq_matrix <- data.frame(ST = colnames(temp_frequency),
+                            Freq = colSums(temp_frequency))
+   rm(temp_frequency)
+
+    # Convert to json
+   
+   json_lda <- LDAvis::createJSON(phi = phi, theta = theta,
+                            vocab = vocab,
+                            doc.length = doc_length,
+                            term.frequency = freq_matrix$Freq)
+
+  return(json_lda)
+}
+
+lda_json <- topicmodels_json_ldavis(fitted = desc_lda, corpus = myCorpus,
+                                       doc_term = dtm)
+
+
+```{r}
+# This chink does a multidimentional scaling intertopic distance map.
+    # Required packages
+    library(topicmodels)
+    library(dplyr)
+    library(stringi)
+    library(tm)
+    library(LDAvis)
+    library(devtools)
+devtools::install_github("cpsievert/LDAvisData")
+devtools::install_github("cpsievert/LDAvis")
+#' Transform Model Output for Use with the LDAvis Package
+#' https://gist.github.com/trinker/477d7ae65ff6ca73cace
+#' Convert a \pkg{topicmodels} output into the JSON form required by the \pkg{LDAvis} package.
+#'
+#' @param model A \code{\link[]{topicmodel}} object.
+#' @param \ldots Currently ignored.
+#' @seealso \code{\link[LDAvis]{createJSON}}
+#' @export
+#' @examples
+#' \dontrun{
+#' data("AssociatedPress", package = "topicmodels")
+#' model <- LDA(AssociatedPress[1:20,], control = list(alpha = 0.1), k = 3)
+#' LDAvis::serVis(topicmodels2LDAvis(model))
+#' }
+topicmodels2LDAvis <- function(x, ...){
+    post <- topicmodels::posterior(x)
+    if (ncol(post[["topics"]]) < 3) stop("The model must contain > 2 topics")
+    mat <- x@wordassignments
+    LDAvis::createJSON(
+        phi = post[["terms"]], 
+        theta = post[["topics"]],
+        vocab = colnames(post[["terms"]]),
+        doc.length = slam::row_sums(mat, na.rm = TRUE),
+        term.frequency = slam::col_sums(mat, na.rm = TRUE)
+    )
+}
+lda_json <- topicmodels2LDAvis(desc_lda)
+serVis(lda_json, reorder.topic = TRUE)
+library(RJSONIO)
+x <- fromJSON(lda_json)
+ 
+```
+
+```{r}
+### this will map the tpic numbers from the rest of the analysis to the multidimentional scaling topic numbers.
+print("Original - MDS#")
+for( i in 1:NumTopics) {
+  print(paste(i, which(x$topic.order == i)))
+}
+```
+
+```{r}
+
+# Generate bigrams
+
+# Bigram setup
+library(tidyr)
+#nsf_funding_bigram %>%
+#  count(bigram, sort = TRUE)
+# remove bigrams with stopwords
+
+bigrams_separated <- nsf_funding_bigram %>%
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+bigrams_filtered <- bigrams_separated %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!word2 %in% stop_words$word)#replace all of the original words in the nsf_funding with lemmas
+# This also needs to be done for the bigrams where the substatution happens for each of the two columns in the bigram. ???
+lemma_bigram_new <- lemma_unique
+#replace word 1 with lemma
+lemma_bigram_new <- left_join(bigrams_filtered,lemma_bigram_new, by = c("word1" = "word")) %>%
+  mutate(word1 = ifelse(is.na(lemma), word_clean, lemma)) # %>%
+# drop last three columns id, word1 and word2
+lemma_bigram_new <- subset(lemma_bigram_new, select = c(id, word1, word2))
+lemma_bigram_new <- left_join(lemma_bigram_new, lemma_unique, by = c("word2" = "word")) %>%
+  mutate(word2 = ifelse(is.na(lemma), word_clean, lemma)) # %>%
+
+lemma_bigram_new <- subset(lemma_bigram_new, select = c(id, word1, word2))
+#nsf_funding <- subset()
+
+# new bigram counts:
+bigram_counts <- lemma_bigram_new %>% 
+  count(word1, word2, sort = TRUE)
+
+bigram_counts
+
+```
+
+ala bernhardlearns.com
+To speed things up, we will not work on every word instance but filter out only the unique ones. If needed the results for the unique word instance can be easily mapped back to the larger data-frame. Some of the techniques I am going to present are quite computational expansive, so if you have a much larger data set, then maybe they are not feasible. I have added system.time() to the particular work-steps so that you can see and decide for yourself.
+
+Further, we apply some basic cleaning:
+
+    removing the possessive ending: ’s
+    removing all words containing non alphabetic characters (depending on the task at hand this might be a bad idea - e.g., in social media emoticons can be very informative)
+    removing missing values
+```{r}
+bigrams_united <- lemma_bigram_new %>%
+  unite(bigram, word1, word2, sep = " ")
+bigrams_united %>%
+  count(bigram, sort = TRUE)
+#
+```
+
+
+https://www.tidytextmining.com/ngrams.html
+
+```{r fig.height=8, fig.width=12}
+library(igraph)
+
+bigram_graph <- bigram_counts %>%
+  filter(n > 6) %>%
+  graph_from_data_frame()
+
+library(ggraph)
+set.seed(2017)
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point() +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1)
+
+#topicFileName <- gsub(".csv","bigraph.png", filename)
+#png(topicFileName, width = 12, height = 8, units = 'in', res = 300)
+png(paste(topicDir,"/bigraph.png", sep=""), width = 12, height = 8, units = 'in', res = 300)
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link() +
+  geom_node_point() +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1)
+dev.off()
+```
+TF-IDF Analysis of bigrams
+```{r}
+bigram_tf_idf <- bigrams_united %>%
+  count(id, bigram) %>%
+  bind_tf_idf(bigram, id, n) %>%
+  arrange(desc(tf_idf))
+
+bigram_tf_idf
+```
+
+```{r fig.height=50, fig.width=10}
+# Graph the bigrams. THIS WILL TAKE SOME TIME
+# categories are compressed
+p <- bigram_tf_idf %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(bigram = factor(bigram, levels = rev(unique(bigram)))) %>% 
+  group_by(id) %>% 
+  top_n(5) %>% 
+  ungroup %>%
+  ggplot(aes(bigram, tf_idf, fill = id)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = NULL, y = "tf-idf") +
+  facet_wrap(~id, ncol = 2, scales = "free") +
+  coord_flip()
+#topicFileName <- gsub(".csv","BigramTFIDFHistogram.png", filename)
+#ggsave(topicFileName, height = 14, device = "png")
+p
+ggsave(paste(topicDir,"/BigramTFIDFHistogram.png", sep=""), height = 30, device = "png")
+#png(paste(topicDir,"/TermsLDAHistogram.png", sep=""), width = 1280, height = 1600)
+while (!is.null(dev.list()))  dev.off()
+
+```
+
+```{r}
+#Top documents per topic
+library(ggplot2)
+library(ggrepel)
+
+number_of_documents = 5 #number of top docs to view
+title <- paste("LDA Top Documents for", NumTopics, "Topics")
+
+top_documents <- lda_gamma %>%
+  group_by(topic) %>%
+  arrange(topic, desc(gamma)) %>%
+  slice(seq_len(number_of_documents)) %>%
+  arrange(topic, gamma) %>%
+  mutate(row = row_number()) %>%
+  ungroup() #%>%
+  #re-label topics
+  #mutate(topic = paste("Topic", topic, sep = " "))
+
+#topicFileName <- gsub(".csv","top_documents.csv", filename)
+write.csv(top_documents, paste(topicDir,"/top_documents.csv", sep=""))
+
+top_bigrams_for_docs <- bigram_tf_idf %>%
+  group_by(id) %>%
+  arrange(id, desc(tf_idf)) %>%
+  slice(seq_len(number_of_documents)) %>%
+  arrange(id, tf_idf) %>%
+  ungroup()  %>%
+  select(id, bigram) 
+ 
+# make the 5 bigrams into 5 columns
+top_bigrams_for_docs_wide <- 
+  dcast(setDT(top_bigrams_for_docs), id~rowid(id, prefix="bigram"), value.var="bigram")   
+
+# add the bigram columns to top_docs
+### error - repeats of bigrams for too many documents....
+# maybe not an error... documents in the smae topic are getting many of the same bigrams.
+top_documents <- left_join(top_documents, top_bigrams_for_docs_wide,
+            select(bigram1, bigram2, bigram3, bigram4, bigram5),
+            by = c("document" = "id"))
+
+
+```
+
+```{r}
+#Join funding amount and title to top_docs_titles
+
+nsf_funding_titles <- data_frame(document = MyData$AwardNumber,
+                          title = MyData$Title, amount = MyData$AwardedAmountToDate)
+# Convert the document #/grant number to a charctaer sting  
+nsf_funding_titles$document <- as.character(nsf_funding_titles$document)
+
+top_documents <- full_join(top_documents, nsf_funding_titles, by = "document")
+#top_docs_titles <- merge(top_documents, nsf_funding_titles, by="document", all.x = TRUE)
+#top_docs_titles <- subset(top_docs_titles, select=-c(row))
+
+#top_documents <- full_join(top_documents, top_docs_titles, by = "document")
+# add topic worth and rank
+top_documents <- full_join(top_documents, topic_worth, by = "topic")
+
+#topicFileName <- gsub(".csv","top_documents.csv", filename)
+write.csv(top_documents, paste(topicDir,"/top_documents.csv", sep=""))
+
+#top_docs_titles
+
+```
+
+
+```{r fig.height=20}
+#Top documents per topic
+
+
+#FIGURE IS BAD AND NEEDS WORK, NOT REALLY A USEFUL VISUALIZATION ANYWAY
+title <- paste("LDA Top Documents for", NumTopics, "Topics")
+
+#define some colors to use throughout
+my_colors <- c("#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#D55E00", "#D65E00")
+
+#customize ggplot2's default theme settings
+#this tutorial doesn't actually pass any parameters, but you may use it again in future tutorials so it's nice to have the options
+theme_lyrics <- function(aticks = element_blank(),
+                         pgminor = element_blank(),
+                         lt = element_blank(),
+                         lp = "none")
+{
+  theme(plot.title = element_text(hjust = 0.5), #center the title
+        axis.ticks = aticks, #set axis ticks to on or off
+        panel.grid.minor = pgminor, #turn on or off the minor grid lines
+        legend.title = lt, #turn on or off the legend title
+        legend.position = lp) #turn on or off the legend
+}
+
+#customize the text tables for consistency using HTML formatting
+my_kable_styling <- function(dat, caption) {
+  kable(dat, "html", escape = FALSE, caption = caption) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed", "bordered"),
+                full_width = FALSE)
+}
+
+word_chart <- function(data, input, title) {
+  data %>%
+  #set y = 1 to just plot one variable and use word as the label
+  ggplot(aes(as.factor(row), 1, label = input, fill = factor(topic) )) +
+  #you want the words, not the points
+  geom_point(color = "transparent") +
+  #make sure the labels don't overlap
+  geom_label_repel(nudge_x = .2,  
+                   direction = "y",
+                   box.padding = 0.1,
+                   segment.color = "transparent",
+                   size = 3) +
+  facet_grid(~topic) +
+  theme_lyrics() +
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(),
+        #axis.title.x = element_text(size = 9),
+        panel.grid = element_blank(), panel.background = element_blank(),
+        panel.border = element_rect("lightgray", fill = NA),
+        strip.text.x = element_text(size = 9)) +
+  labs(x = NULL, y = NULL, title = title) +
+    #xlab(NULL) + ylab(NULL) +
+  #ggtitle(title) +
+  coord_flip()
+
+}
+
+facet_wrap(~ topic, ncol = 10, scales = "free")
+
+word_chart(top_documents, top_documents$document, title)
+
+
+```
+
+```{r}
+#Distribution of probabilities for all topics
+
+ggplot(lda_gamma, aes(gamma)) +
+  geom_histogram() +
+  scale_y_log10() +
+  labs(title = "Distribution of probabilities for all topics",
+       y = "Number of documents", x = expression(gamma))
+```
+
+```{r}
+#Probability distribution in each topic
+
+ggplot(lda_gamma, aes(gamma, fill = as.factor(topic))) +
+  geom_histogram(show.legend = FALSE) +
+  facet_wrap(~ topic, ncol = 4) +
+  scale_y_log10() +
+  labs(title = "Distribution of probability for each topic",
+       y = "Number of documents", x = expression(gamma))
+# Evaluate more topics and an automatic method to see where mean sq gamma begins to drop.
+
+```
+https://knowledger.rbind.io/post/topic-modeling-using-r/
+We can correlate the topic by the metadata available, here will will use the predefined category of the documents. I construct a dataframe binding the Document Number, theta for the document, and its associated category. The column means of theta, grouped by category is calculated.
+```{r}
+theta <- posterior(desc_lda)$topics %>% as.matrix
+x <- as.data.frame(row.names(theta), stringsAsFactors = FALSE)
+colnames(x) <- c("GrantNumber")
+x$LessonId <- as.numeric(x$LessonId)
+theta2 <- cbind(x, theta)
+theta2 <- dplyr::left_join(theta2, FirstCategorybyLesson, by = "GrantNumber")
+## Returns column means grouped by catergory
+## The example this came from had 27 topics... why 28? We have variable NumTopics
+theta.mean.by <- by(theta2[, 2:28], theta2$Category, colMeans)
+theta.mean <- do.call("rbind", theta.mean.by)
+#I can now correlate the topics.
+library(corrplot)
+c <- cor(theta.mean)
+corrplot(c, method = "circle")
+```
+
+Financial analysis on Award Amount
+
+```{r}
+#Join abstracts to funding amount
+library(dplyr)
+
+nsf_amount <- data_frame(id = as.character(MyData$AwardNumber),
+                            title = MyData$AwardedAmountToDate)
+nsf_amount
+
+#Continue join
+
+nsf_amount <- nsf_amount %>% 
+  unnest_tokens(word, title) %>% 
+  anti_join(stop_words)
+
+desc_tf_idf <- full_join(desc_tf_idf, nsf_amount, by = "id")
+desc_tf_idf
+
+# 
+TopicInvestmentBigram <- full_join(top_documents, topic_worth, by = "topic")
+write.csv(TopicInvestmentBigram, paste(topicDir,"/TopicInvestmentBigram.csv", sep=""))
+
+```
+Identify the top element codes for a topic.
+Each grant has a gamma associated with each topic.
+Each grant has one or more element code. 
+Program codes indicate cross-NSF initiatives. The element code is home but funding also arrises from the cross NSF programs. For a first aproximation analaysis calculate the element contribution to a topic by multiplying the grant amount for each grant in the for each topic ProgramInvestment = Sum of gamma * amount divided evenly among elment codes. This distribution is an approximation because the split for funding may not be 50/50. eg. if there is one element code all spending is assigned to that one element. If there are two the investement will be split between them.  Money may actually be coming form program codes as well..
+Output Data Structure: Topic, Element Code, Total Investment
+

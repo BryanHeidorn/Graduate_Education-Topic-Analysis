@@ -1,0 +1,8 @@
+"0",""
+"0","#https://tm4ss.github.io/docs/Tutorial_6_Topic_Models.html"
+"0",""
+"0","top10termsPerTopic <- terms(desc_lda, 10)"
+"0","topicNames <- apply(top10termsPerTopic, 2, paste, collapse="" "")"
+"0",""
+"0","# have a look at some of the results (posterior distributions)"
+"0","tmResult <- posterior(desc_lda)"

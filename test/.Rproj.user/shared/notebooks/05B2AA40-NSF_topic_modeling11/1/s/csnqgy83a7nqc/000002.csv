@@ -1,0 +1,4 @@
+"0","bigrams_united <- lemma_bigram_new %>%"
+"0","  unite(bigram, word1, word2, sep = "" "")"
+"0","bigrams_united %>%"
+"0","  count(bigram, sort = TRUE)"

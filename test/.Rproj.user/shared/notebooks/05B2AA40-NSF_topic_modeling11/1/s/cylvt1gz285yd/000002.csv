@@ -1,0 +1,8 @@
+"0","#replace all of the original words in the nsf_funding with lemmas"
+"0","# This also needs to be done for the bigrams where the substatution happens for each of the two columns in the bigram. ???"
+"0","lemma_new <- lemma_unique"
+"0","#lemma_new <- left_join(nsf_funding,lemma_new, by = ""word"")"
+"0","lemma_new <- left_join(nsf_funding,lemma_new, by = ""word"") %>%"
+"0","  mutate(word = ifelse(is.na(lemma), word_clean, lemma)) # %>%"
+"0","lemma_new <- subset(lemma_new, select = c(id, word))"
+"0","lemma_new[is.na(lemma_new$word),]"

@@ -1,0 +1,5 @@
+"0","##Examine which topics are associated with which documents"
+"0",""
+"0","lda_gamma <- tidy(desc_lda, matrix = ""gamma"")"
+"0",""
+"0","lda_gamma"

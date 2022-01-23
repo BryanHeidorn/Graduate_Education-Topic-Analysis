@@ -1,0 +1,9 @@
+"0","#wordcloud"
+"0","library(wordcloud)"
+"2","Loading required package: RColorBrewer
+"
+"0","#setting the same seed each time ensures consistent look across clouds"
+"0","set.seed(42)"
+"0","png(paste(topicDir,""/FreqWordCloud.png"", sep=""""), width=1280,height=800)"
+"0","#limit words by specifying min frequency"
+"0","wordcloud(names(freq),freq, max.words=100, scale=c(4,.2), colors=brewer.pal(6,""Dark2""))"
