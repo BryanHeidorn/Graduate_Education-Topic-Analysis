@@ -1,6 +1,0 @@
-"0","ggsave(paste(topicDir,""/BigramTFIDFHistogram.png"", sep=""""), height = 30, device = ""png"")"
-"2","Saving 20 x 30 in image
-"
-"0","#png(paste(topicDir,""/TermsLDAHistogram.png"", sep=""""), width = 1280, height = 1600)"
-"0","while (!is.null(dev.list()))  dev.off()"
-"0",""

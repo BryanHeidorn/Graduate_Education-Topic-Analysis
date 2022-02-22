@@ -1,2 +1,0 @@
-"0","#This saves a file"
-"0","png(paste(topicDir,""/focusHistogram.png"", sep=""""), width = 5, height = 4, units = 'in', res = 300)"

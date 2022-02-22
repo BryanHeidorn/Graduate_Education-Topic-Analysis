@@ -1,5 +1,0 @@
-"0",""
-"0","# "
-"0","TopicInvestmentBigram <- full_join(top_documents, topic_worth, by = ""topic"")"
-"0","write.csv(TopicInvestmentBigram, paste(topicDir,""/TopicInvestmentBigram.csv"", sep=""""))"
-"0",""

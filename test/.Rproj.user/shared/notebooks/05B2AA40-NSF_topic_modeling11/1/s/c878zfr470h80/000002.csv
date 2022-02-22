@@ -1,8 +1,0 @@
-"0","theta <- posterior(desc_lda)$topics %>% as.matrix
-x <- as.data.frame(row.names(theta), stringsAsFactors = FALSE)
-colnames(x) <- c(""GrantNumber"")
-x$LessonId <- as.numeric(x$LessonId)
-"
-"2","Error in `$<-.data.frame`(`*tmp*`, LessonId, value = numeric(0)) : 
-  replacement has 0 rows, data has 38
-"

@@ -1,4 +1,0 @@
-"0","if (statedPercent != 100) {"
-"0","  # Only do this if you want to only analyse part of the collection"
-"0","  nsf_funding <- head(nsf_funding, as.integer(nrow(nsf_funding)*(headpercent/100)))"
-"0","}"

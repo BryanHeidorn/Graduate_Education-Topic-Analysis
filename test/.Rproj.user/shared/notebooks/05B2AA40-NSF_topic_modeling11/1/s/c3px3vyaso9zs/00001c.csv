@@ -1,4 +1,0 @@
-"0",""
-"0","#topicFileName <- gsub("".csv"",""bigraph.png"", filename)"
-"0","#png(topicFileName, width = 12, height = 8, units = 'in', res = 300)"
-"0","png(paste(topicDir,""/bigraph.png"", sep=""""), width = 12, height = 8, units = 'in', res = 300)"

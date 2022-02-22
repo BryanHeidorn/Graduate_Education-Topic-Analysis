@@ -1,4 +1,0 @@
-"0","#topicFileName <- gsub("".csv"",""TermsLDAHistogram.png"", filename)"
-"0","#ggsave(topicFileName, height = 14, device = ""png"")"
-"0","#png(paste(topicDir,""/TermsLDAHistogram.png"", sep=""""), width = 1280, height = 1600)"
-"0","while (!is.null(dev.list()))  dev.off()"

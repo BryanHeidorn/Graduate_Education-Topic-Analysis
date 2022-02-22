@@ -1,8 +1,0 @@
-"0","while (!is.null(dev.list()))  dev.off()"
-"0","#Second call puts the cloud image on the screen"
-"0","wordcloud(names(freq), freq, max.words=100, scale=c(4,.2), colors=brewer.pal(6,""Dark2""))"
-"2","Warning in wordcloud(names(freq), freq, max.words = 100, scale = c(4, 0.2),  :"
-"2","
- "
-"2"," project could not be fit on page. It will not be plotted.
-"

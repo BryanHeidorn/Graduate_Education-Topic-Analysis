@@ -1,5 +1,0 @@
-"0","harmonicMean <- function(logLikelihoods, precision = 2000L) {"
-"0","  llMed <- median(logLikelihoods)"
-"0","  as.double(llMed - log(mean(exp(-mpfr(logLikelihoods,"
-"0","                                       prec = precision) + llMed))))"
-"0","}"

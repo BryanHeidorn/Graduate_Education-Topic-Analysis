@@ -1,7 +1,0 @@
-"0","while (!is.null(dev.list()))  dev.off()"
-"0","wordcloud(names(freq),freq, min.freq=20,scale=c(4,.2), colors=brewer.pal(6,""Dark2""))"
-"2","Warning in wordcloud(names(freq), freq, min.freq = 20, scale = c(4, 0.2),  :"
-"2","
- "
-"2"," project could not be fit on page. It will not be plotted.
-"

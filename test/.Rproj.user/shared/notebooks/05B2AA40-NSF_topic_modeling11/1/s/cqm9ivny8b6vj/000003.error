@@ -1,1 +1,0 @@
-{"frames":[],"message":"Error in ggplot(lda_gamma, aes(gamma, fill = as.factor(topic))) : \n  could not find function \"ggplot\"\n"}
