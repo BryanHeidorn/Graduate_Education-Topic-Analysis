@@ -1,0 +1,101 @@
+---
+title: "Merge Collaborative Projects"
+output: html_notebook
+---
+Merge collaborative projects based on title of grant. Add all funding and place on one grant. This is because the Abstracts for all proposals are the same distorting topic analysis. Some project titles on collaborative grants are however slightly different so some matching may need to be by hand.
+
+
+
+# depricated function
+compare <- function(...){
+
+  m <- list(...)
+  n_mod <- length(m)
+  names(m) <- sapply(substitute(list(...))[-1], deparse)
+  combs <- t(combn(x = names(m), m = 2))
+
+  comp_value <- apply(X = combs, MARGIN = 1, function(ind) pchisq(2 * (logLik(m[[ind[2]]]) - logLik(m[[ind[1]]])), df = abs(m[[ind[1]]]$df.residual - m[[ind[2]]]$df.residual), lower.tail = FALSE))
+  df_out <- data.frame(combs, comp_value)
+  names(df_out) <- c("mod_1", "mod_2", "comp_value")
+
+  return(df_out)
+}
+
+```{r}
+#https://cran.r-project.org/web/packages/stringdist/stringdist.pdf
+# install.packages("stringdist")
+library(stringdist)
+# set the root directory for analysis
+# setwd("~/Documents/TextMiningR/NSF-AST/")
+#setwd("~/Documents/papers/NSFThemeAnalysis2018/RTrendAnalysis/")
+
+#library(tcltk2)
+#tkmessageBox(message = "Select a tab delimited text file.")
+#filename <- tclvalue(tkgetOpenFile(initialdir=".")) # 
+filename <- "Edu.csv"
+
+#filename <- tclvalue(tkgetOpenFile(initialdir="/Users/gretchenstahlman/Documents/TextMiningR")) # 
+if (!nchar(filename)) {
+  tkmessageBox(message = "No file was selected!")
+}
+topicDir <- tools::file_path_sans_ext(filename)
+
+dir.create(topicDir, showWarnings = FALSE)
+
+#MyData <- read.csv(filename, header=TRUE, sep="\t", encoding = "UTF-8", stringsAsFactors=FALSE) # tab delimited
+MyData <- read.csv(filename, header=TRUE, encoding = "UTF-8", stringsAsFactors=FALSE) # tab delimited
+```
+
+```{r}
+# Create a triangular matrix of similarity.
+# Nested loop start with 1 - N
+library(dplyr)
+
+Mx <- stringdistmatrix(tolower(MyData$Title), tolower(MyData$Title), method= c("lcs"))
+plot(hclust(as.dist(Mx)))
+#serialization inspited by: https://stackoverflow.com/questions/27892100/distance-matrix-to-pairwise-distance-list-in-r
+# Use the AwardNumber as the labels
+dimnames(Mx) <- dimnames(Mx) <- list(MyData$AwardNumber, MyData$AwardNumber) 
+#  Paste together the AwardNumber to the matrix
+xy <- t(combn(colnames(Mx), 2))
+MxSim <- data.frame(xy, dist=Mx[xy])
+# Now sort by similarity and AwardNumber.
+MxSim <- MxSim[ with(MxSim, order(MxSim$dist, MxSim$X1)), ]
+# Shorten the list to the most similar
+ShortMxCol <- MxSim[ which(MxSim$dist < 25), ]
+# add the Project Titles 
+# Add the title for the left AwardNumber
+ShortMxCol <- merge(x = ShortMxCol, y = select(MyData, c(AwardNumber, Title)), by.y = c("AwardNumber"), by.x = "X1")
+# Change the name of the "Title" Column to "Title 1"
+colnames(ShortMxCol)[which(names(ShortMxCol) == "Title")] <- "Title 1"
+# Add the title for the right AwardNumber
+ShortMxCol <- merge(x = ShortMxCol, y = select(MyData, c(AwardNumber, Title)), by.y = c("AwardNumber"), by.x = "X2")
+# write.csv(ShortMxCol, paste(topicDir,"/SimilarTitles.csv", sep=""))
+
+
+```
+
+```{r}
+# Find the similar grant by abstract
+MyData_Abs <- read.csv("duplicated.csv", header=TRUE, encoding = "UTF-8", stringsAsFactors=FALSE) # tab delimited
+Mx_abs <- stringdistmatrix(tolower(MyData_Abs$Abstract), tolower(MyData_Abs$Abstract), method= c("lcs"))
+# plot(hclust(as.dist(Mx)))
+#serialization inspited by: https://stackoverflow.com/questions/27892100/distance-matrix-to-pairwise-distance-list-in-r
+# Use the AwardNumber as the labels
+dimnames(Mx_abs) <- dimnames(Mx_abs) <- list(MyData_Abs$AwardNumber, MyData_Abs$AwardNumber) 
+#  Paste together the AwardNumber to the matrix
+xy_abs <- t(combn(colnames(Mx_abs), 2))
+MxSim_abs <- data.frame(xy_abs, dist=Mx_abs[xy_abs])
+# Now sort by similarity and AwardNumber.
+MxSim_abs <- MxSim_abs[ with(MxSim_abs, order(MxSim_abs$dist, MxSim_abs$X1)), ]
+# Shorten the list to the most similar
+ShortMxCol_abs <- MxSim_abs[ which(MxSim_abs$dist < 25), ]
+# add the Project Titles 
+# Add the title for the left AwardNumber
+ShortMxCol_abs <- merge(x = ShortMxCol_abs, y = select(MyData_Abs, c(AwardNumber, Abstract)), by.y = c("AwardNumber"), by.x = "X1")
+# Change the name of the "Title" Column to "Title 1"
+colnames(ShortMxCol_abs)[which(names(ShortMxCol_abs) == "Abstract")] <- "Abstract 1"
+# Add the title for the right AwardNumber
+ShortMxCol_abs <- merge(x = ShortMxCol_abs, y = select(MyData_Abs, c(AwardNumber, Abstract)), by.y = c("AwardNumber"), by.x = "X2")
+write.csv(ShortMxCol_abs, paste(topicDir,"/SimilarAbstract.csv", sep=""))
+```
