@@ -19,7 +19,7 @@ while(i < 26):
     temp_df = ele_df.loc[ele_df["topic"] == i]
     for j in range(len(temp_df)):
         elecode = temp_df.values[j][4].strip()
-        if(elecode != "nan"):
+        if(elecode != "NAN"):
             amount = temp_df.values[j][3]
             gamma = temp_df.values[j][2]
             if("," in elecode == False):
@@ -52,10 +52,11 @@ while(i < 26):
     plt.title("Element Code Funding Amount Histogram of Topic #" + str(i), fontsize = 16)
     plt.xlabel("funding amount", fontweight = 'bold')
     plt.ylabel("element_code", fontweight = 'bold')
+    plt.xticks(rotation = 10)
     figname = "fundAmount" + str(i) + ".png"
     plt.savefig(figname)
     plt.show()
     i += 1
 
-#amount_result.to_csv("ele_amount.csv")
+amount_result.to_csv("ele_amount.csv")
 

@@ -15,9 +15,18 @@ top_doc_df = pd.read_csv("/Users/zhengsongyi/Desktop/2022Spring/Capstone/data/Ed
 # join two dfs and find element code and amount value
 data = top_doc_df.join(new_edu_df.set_index("document"), on="document")
 data.groupby('topic')
+
 # "clean_ele" is completed file contain documents and ele_code info
-#data.to_csv("clean_ele.csv")
 data["ele_code"] = data["ele_code"].astype(str)
+# Clean data: Upper all character in element code
+# Data Error fix: element code "054Y" and "154Y" are same, so change "054Y" to "154Y"
+for i in range(0, len(data)):
+    curr_ele = data.values[i][4].upper()
+    if("054Y" in curr_ele):
+        curr_ele = curr_ele.replace("054Y", "154Y")
+    data.loc[i, "ele_code"] = curr_ele
+# store data
+#data.to_csv("clean_ele.csv")
 
 # Step 2:
 # create the result df for counting frequency, which contains "topic", "ele_code", and "freq"
@@ -32,7 +41,7 @@ while(i < 26):
     temp_df = data.loc[data["topic"] == i]
     for j in range(len(temp_df)):
         elecode = temp_df.values[j][4].strip()
-        if(elecode != "nan"):
+        if(elecode != "NAN"):
             if("," in elecode == False):
                 if(dic.has_key(elecode) == False):
                     dic[elecode] = 1
@@ -57,16 +66,17 @@ while(i < 26):
         ele_lst.append(t[0])
         freq_lst.append(t[1])
     # draw frequency histogram
-    plt.barh(ele_lst, freq_lst)
-    plt.title("Element Code Frequency Histogram of Topic #" + str(i), fontsize = 16)
-    plt.xlabel("frequency", fontweight = 'bold')
-    plt.ylabel("element_code", fontweight = 'bold')
-    figname = "freq" + str(i) + ".png"
-    plt.savefig(figname)
-    plt.show()
+    # plt.barh(ele_lst, freq_lst)
+    # plt.title("Element Code Frequency Histogram of Topic #" + str(i), fontsize = 16)
+    # plt.xlabel("frequency", fontweight = 'bold')
+    # plt.ylabel("element_code", fontweight = 'bold')
+    # figname = "freq" + str(i) + ".png"
+    # plt.savefig(figname)
+    # plt.show()
     i += 1
 
 #freq_result.to_csv("ele_freq.csv")
+
 
 
 
