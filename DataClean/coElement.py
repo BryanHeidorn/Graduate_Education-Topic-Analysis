@@ -58,21 +58,11 @@ while(i < 26):
                         dic[e] += 1
     # sort the dic depend on value
     dic = sorted(dic.items(), key = lambda item:item[1])
-    ele_lst = []
-    freq_lst = []
+
     # put temp dic to result df
     for t in dic:
         freq_result = freq_result.append({'topic':i, 'ele_code':t[0], 'freq':t[1]}, ignore_index=True)
-        ele_lst.append(t[0])
-        freq_lst.append(t[1])
-    # draw frequency histogram
-    # plt.barh(ele_lst, freq_lst)
-    # plt.title("Element Code Frequency Histogram of Topic #" + str(i), fontsize = 16)
-    # plt.xlabel("frequency", fontweight = 'bold')
-    # plt.ylabel("element_code", fontweight = 'bold')
-    # figname = "freq" + str(i) + ".png"
-    # plt.savefig(figname)
-    # plt.show()
+
     i += 1
 
 #freq_result.to_csv("ele_freq.csv")

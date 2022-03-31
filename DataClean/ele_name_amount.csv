@@ -1,0 +1,601 @@
+topic,ele_code,ele_amount,name,long_name
+1,055Y,3696.32,CISE Education and Workforce,CISE Education and Workforce
+1,1998,3696.32,IUSE,Imploving Undergraduate STEM Education (IUSE)
+1,7645,5876.58,Discovery Research K-12,Discovery Research K-12
+1,125Y,9110.89,Science of Science,Science of Science
+1,062Y,23498.67,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+1,7259,23498.67,AISL,Advencing Informal STEM Learning
+1,8624,27061.76,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+1,1253,30201.34,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+1,7699,45132.7,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+1,7959,53073,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+1,107Y,60371.52,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+1,154Y,75290.07,GVF - Global Venture Fund,GVF - Global Venture Fund
+1,7275,95744.65,Cross-EF Activities,Cross-EF Activities
+1,1536,110574.5,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+1,104Y,111005.58,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+1,7412,116226.27,Advanced Tech Education Prog,Advanced Tech Education Prog
+1,9150,141400.7,EPSCoR Co-Funding,EPSCoR Co-Funding
+1,162Y,165371.71,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+1,7980,718397.73,ECR-EHR Core Research,ECR-EHR Core Research
+1,8060,767497.33,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+1,7261,2032156.43,Project & Program Evaluation,Project & Program Evaluation
+1,1668,3302937.05,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+1,1997,7105596.78,NRT,NSF Research Traineeship (NRT)
+1,7172,8452533.26,Graduate Research Fellowship,Graduate Research Fellowship
+2,055Y,2874.92,CISE Education and Workforce,CISE Education and Workforce
+2,1998,2874.92,IUSE,Imploving Undergraduate STEM Education (IUSE)
+2,7645,5876.58,Discovery Research K-12,Discovery Research K-12
+2,1253,10067.11,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+2,062Y,13707.56,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+2,7259,13707.56,AISL,Advencing Informal STEM Learning
+2,8624,16781.42,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+2,7959,23588,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+2,125Y,25054.94,Science of Science,Science of Science
+2,154Y,47280.07,GVF - Global Venture Fund,GVF - Global Venture Fund
+2,7699,63716.75,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+2,1536,91806.12,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+2,107Y,97523.22,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+2,7412,99072.68,Advanced Tech Education Prog,Advanced Tech Education Prog
+2,7275,100303.92,Cross-EF Activities,Cross-EF Activities
+2,104Y,167018.51,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+2,9150,172514.34,EPSCoR Co-Funding,EPSCoR Co-Funding
+2,162Y,174159.87,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+2,8060,596942.99,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+2,7980,906851,ECR-EHR Core Research,ECR-EHR Core Research
+2,1668,2264053.24,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+2,7261,2912320.38,Project & Program Evaluation,Project & Program Evaluation
+2,1997,8074974.37,NRT,NSF Research Traineeship (NRT)
+2,7172,56243711.01,Graduate Research Fellowship,Graduate Research Fellowship
+3,7645,7835.45,Discovery Research K-12,Discovery Research K-12
+3,7275,9118.54,Cross-EF Activities,Cross-EF Activities
+3,1253,10067.11,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+3,7959,11794,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+3,107Y,13931.89,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+3,125Y,18221.77,Science of Science,Science of Science
+3,055Y,22177.94,CISE Education and Workforce,CISE Education and Workforce
+3,1998,22177.94,IUSE,Imploving Undergraduate STEM Education (IUSE)
+3,7699,23893.78,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+3,1536,24897.16,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+3,8624,25363.6,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+3,7412,28126.74,Advanced Tech Education Prog,Advanced Tech Education Prog
+3,154Y,30380.22,GVF - Global Venture Fund,GVF - Global Venture Fund
+3,104Y,33100.65,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+3,162Y,89286.78,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+3,9150,97300.44,EPSCoR Co-Funding,EPSCoR Co-Funding
+3,062Y,135117.36,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+3,7259,135117.36,AISL,Advencing Informal STEM Learning
+3,7980,534614.36,ECR-EHR Core Research,ECR-EHR Core Research
+3,8060,903852.87,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+3,7261,1714592.45,Project & Program Evaluation,Project & Program Evaluation
+3,1668,3728877.89,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+3,1997,5608120.2,NRT,NSF Research Traineeship (NRT)
+3,7172,13111021.37,Graduate Research Fellowship,Graduate Research Fellowship
+4,055Y,1642.81,CISE Education and Workforce,CISE Education and Workforce
+4,1998,1642.81,IUSE,Imploving Undergraduate STEM Education (IUSE)
+4,062Y,5874.67,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+4,7259,5874.67,AISL,Advencing Informal STEM Learning
+4,125Y,6833.17,Science of Science,Science of Science
+4,7645,15670.89,Discovery Research K-12,Discovery Research K-12
+4,7959,17691,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+4,107Y,27863.78,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+4,1536,36208.18,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+4,1253,40268.46,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+4,7699,42477.83,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+4,7412,42667.35,Advanced Tech Education Prog,Advanced Tech Education Prog
+4,9150,62109.51,EPSCoR Co-Funding,EPSCoR Co-Funding
+4,7275,63829.77,Cross-EF Activities,Cross-EF Activities
+4,154Y,71946.71,GVF - Global Venture Fund,GVF - Global Venture Fund
+4,8624,103247.93,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+4,104Y,136513.5,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+4,162Y,152753.65,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+4,7980,963806.73,ECR-EHR Core Research,ECR-EHR Core Research
+4,8060,1071710.42,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+4,7261,1306568.45,Project & Program Evaluation,Project & Program Evaluation
+4,1668,3207427.62,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+4,1997,4089811.24,NRT,NSF Research Traineeship (NRT)
+4,7172,20897098.48,Graduate Research Fellowship,Graduate Research Fellowship
+5,7959,5897,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+5,055Y,6160.54,CISE Education and Workforce,CISE Education and Workforce
+5,1998,6160.54,IUSE,Imploving Undergraduate STEM Education (IUSE)
+5,7699,18584.05,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+5,7645,21547.48,Discovery Research K-12,Discovery Research K-12
+5,062Y,27415.12,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+5,7259,27415.12,AISL,Advencing Informal STEM Learning
+5,125Y,29610.38,Science of Science,Science of Science
+5,1253,30201.34,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+5,8624,40625.93,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+5,7275,41033.42,Cross-EF Activities,Cross-EF Activities
+5,9150,41146.69,EPSCoR Co-Funding,EPSCoR Co-Funding
+5,107Y,41795.67,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+5,1536,51236.41,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+5,7412,56888.18,Advanced Tech Education Prog,Advanced Tech Education Prog
+5,104Y,59007.88,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+5,154Y,69259.13,GVF - Global Venture Fund,GVF - Global Venture Fund
+5,162Y,263264.81,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+5,8060,709210.13,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+5,7261,1287915.05,Project & Program Evaluation,Project & Program Evaluation
+5,7980,1989493.7,ECR-EHR Core Research,ECR-EHR Core Research
+5,1668,3389370.75,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+5,1997,4176335.39,NRT,NSF Research Traineeship (NRT)
+5,7172,12914895.42,Graduate Research Fellowship,Graduate Research Fellowship
+6,7645,5876.58,Discovery Research K-12,Discovery Research K-12
+6,125Y,6833.17,Science of Science,Science of Science
+6,1253,10067.11,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+6,062Y,11749.34,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+6,7259,11749.34,AISL,Advencing Informal STEM Learning
+6,107Y,13931.89,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+6,7699,15929.19,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+6,8624,16408.76,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+6,7275,18237.08,Cross-EF Activities,Cross-EF Activities
+6,055Y,28338.48,CISE Education and Workforce,CISE Education and Workforce
+6,1998,28338.48,IUSE,Imploving Undergraduate STEM Education (IUSE)
+6,1536,33489.75,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+6,7959,35382,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+6,104Y,36747.98,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+6,7412,43985.9,Advanced Tech Education Prog,Advanced Tech Education Prog
+6,154Y,74335.09,GVF - Global Venture Fund,GVF - Global Venture Fund
+6,162Y,81562.04,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+6,9150,145394.91,EPSCoR Co-Funding,EPSCoR Co-Funding
+6,7980,422180.61,ECR-EHR Core Research,ECR-EHR Core Research
+6,7261,775879.2,Project & Program Evaluation,Project & Program Evaluation
+6,1668,2382129.17,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+6,1997,3440743.68,NRT,NSF Research Traineeship (NRT)
+6,8060,5102468.13,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+6,7172,12560752.54,Graduate Research Fellowship,Graduate Research Fellowship
+7,055Y,2464.22,CISE Education and Workforce,CISE Education and Workforce
+7,1998,2464.22,IUSE,Imploving Undergraduate STEM Education (IUSE)
+7,062Y,15665.78,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+7,7259,15665.78,AISL,Advencing Informal STEM Learning
+7,125Y,18221.77,Science of Science,Science of Science
+7,7645,23506.34,Discovery Research K-12,Discovery Research K-12
+7,1253,25167.78,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+7,7959,29485,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+7,107Y,41795.67,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+7,7699,45132.7,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+7,8624,45663.72,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+7,1536,85358.18,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+7,7412,91817.35,Advanced Tech Education Prog,Advanced Tech Education Prog
+7,9150,103256.73,EPSCoR Co-Funding,EPSCoR Co-Funding
+7,7275,109422.46,Cross-EF Activities,Cross-EF Activities
+7,104Y,112927.17,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+7,154Y,137810.26,GVF - Global Venture Fund,GVF - Global Venture Fund
+7,162Y,171995.25,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+7,7980,1167336.79,ECR-EHR Core Research,ECR-EHR Core Research
+7,8060,1292909.7,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+7,7261,1678005.85,Project & Program Evaluation,Project & Program Evaluation
+7,1668,3233347.67,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+7,1997,6055727.31,NRT,NSF Research Traineeship (NRT)
+7,7172,16943175.55,Graduate Research Fellowship,Graduate Research Fellowship
+8,055Y,3285.62,CISE Education and Workforce,CISE Education and Workforce
+8,1998,3285.62,IUSE,Imploving Undergraduate STEM Education (IUSE)
+8,7959,11794,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+8,7645,13712.03,Discovery Research K-12,Discovery Research K-12
+8,125Y,18221.77,Science of Science,Science of Science
+8,7275,18237.08,Cross-EF Activities,Cross-EF Activities
+8,8624,27118.08,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+8,7699,31858.37,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+8,062Y,41122.67,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+8,7259,41122.67,AISL,Advencing Informal STEM Learning
+8,1253,70469.8,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+8,107Y,83591.33,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+8,104Y,98305.03,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+8,154Y,110968.72,GVF - Global Venture Fund,GVF - Global Venture Fund
+8,1536,128416.33,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+8,7412,139719.88,Advanced Tech Education Prog,Advanced Tech Education Prog
+8,162Y,201499.18,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+8,9150,261197.45,EPSCoR Co-Funding,EPSCoR Co-Funding
+8,7980,741287.44,ECR-EHR Core Research,ECR-EHR Core Research
+8,8060,994069.2,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+8,7261,1391881.15,Project & Program Evaluation,Project & Program Evaluation
+8,1668,3493488.53,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+8,1997,4944673.27,NRT,NSF Research Traineeship (NRT)
+8,7172,12876786.41,Graduate Research Fellowship,Graduate Research Fellowship
+9,125Y,6833.17,Science of Science,Science of Science
+9,7699,7964.59,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+9,055Y,9856.86,CISE Education and Workforce,CISE Education and Workforce
+9,1998,9856.86,IUSE,Imploving Undergraduate STEM Education (IUSE)
+9,7959,14742.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+9,1253,15100.67,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+9,062Y,17624,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+9,7259,17624,AISL,Advencing Informal STEM Learning
+9,1536,19903.62,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+9,7412,21518.41,Advanced Tech Education Prog,Advanced Tech Education Prog
+9,7275,27355.61,Cross-EF Activities,Cross-EF Activities
+9,107Y,37151.7,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+9,154Y,40050.16,GVF - Global Venture Fund,GVF - Global Venture Fund
+9,8624,42601.89,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+9,104Y,44455.57,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+9,9150,69845.08,EPSCoR Co-Funding,EPSCoR Co-Funding
+9,162Y,205975.59,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+9,7645,233104.5,Discovery Research K-12,Discovery Research K-12
+9,7261,920299.24,Project & Program Evaluation,Project & Program Evaluation
+9,8060,1001776.6,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+9,1668,1404847.34,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+9,7980,2204975.78,ECR-EHR Core Research,ECR-EHR Core Research
+9,1997,2697171.02,NRT,NSF Research Traineeship (NRT)
+9,7172,12718769.48,Graduate Research Fellowship,Graduate Research Fellowship
+10,125Y,6833.17,Science of Science,Science of Science
+10,055Y,7803.35,CISE Education and Workforce,CISE Education and Workforce
+10,1998,7803.35,IUSE,Imploving Undergraduate STEM Education (IUSE)
+10,7645,15670.89,Discovery Research K-12,Discovery Research K-12
+10,1536,18544.4,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+10,8624,21555.9,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+10,7412,21773.98,Advanced Tech Education Prog,Advanced Tech Education Prog
+10,162Y,106654.11,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+10,7959,206395,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+10,062Y,207571.59,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+10,7259,207571.59,AISL,Advencing Informal STEM Learning
+10,7699,278760.77,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+10,107Y,334365.33,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+10,8060,458335.33,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+10,7275,492401.05,Cross-EF Activities,Cross-EF Activities
+10,1253,503355.71,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+10,7980,520637.11,ECR-EHR Core Research,ECR-EHR Core Research
+10,154Y,708954.27,GVF - Global Venture Fund,GVF - Global Venture Fund
+10,9150,827688.99,EPSCoR Co-Funding,EPSCoR Co-Funding
+10,104Y,843506.01,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+10,1668,1883942.8,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+10,7172,8730458.12,Graduate Research Fellowship,Graduate Research Fellowship
+10,7261,12077628.71,Project & Program Evaluation,Project & Program Evaluation
+10,1997,40508641.45,NRT,NSF Research Traineeship (NRT)
+11,062Y,3916.45,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+11,7259,3916.45,AISL,Advencing Informal STEM Learning
+11,055Y,8624.76,CISE Education and Workforce,CISE Education and Workforce
+11,1998,8624.76,IUSE,Imploving Undergraduate STEM Education (IUSE)
+11,7275,9118.54,Cross-EF Activities,Cross-EF Activities
+11,1253,15100.67,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+11,7699,18584.05,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+11,154Y,30599.75,GVF - Global Venture Fund,GVF - Global Venture Fund
+11,7959,32433.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+11,8624,38808.15,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+11,107Y,41795.67,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+11,9150,46623.34,EPSCoR Co-Funding,EPSCoR Co-Funding
+11,104Y,72563.26,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+11,1536,89371.57,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+11,7412,96638.13,Advanced Tech Education Prog,Advanced Tech Education Prog
+11,7645,133202.57,Discovery Research K-12,Discovery Research K-12
+11,125Y,145774.2,Science of Science,Science of Science
+11,8060,643833.5,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+11,7261,943880.58,Project & Program Evaluation,Project & Program Evaluation
+11,162Y,1730755.55,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+11,1668,1750597.97,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+11,1997,3802165.91,NRT,NSF Research Traineeship (NRT)
+11,7980,5704431.41,ECR-EHR Core Research,ECR-EHR Core Research
+11,7172,33020048.95,Graduate Research Fellowship,Graduate Research Fellowship
+12,055Y,3696.32,CISE Education and Workforce,CISE Education and Workforce
+12,1998,3696.32,IUSE,Imploving Undergraduate STEM Education (IUSE)
+12,7645,7835.45,Discovery Research K-12,Discovery Research K-12
+12,8624,8504.93,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+12,125Y,11388.61,Science of Science,Science of Science
+12,7959,11794,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+12,7275,13677.81,Cross-EF Activities,Cross-EF Activities
+12,7699,15929.19,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+12,062Y,17624,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+12,7259,17624,AISL,Advencing Informal STEM Learning
+12,107Y,23219.81,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+12,1253,30201.34,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+12,9150,31273.74,EPSCoR Co-Funding,EPSCoR Co-Funding
+12,1536,35528.57,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+12,154Y,37462.61,GVF - Global Venture Fund,GVF - Global Venture Fund
+12,7412,37950.76,Advanced Tech Education Prog,Advanced Tech Education Prog
+12,104Y,42660.01,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+12,162Y,91704.42,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+12,7980,368669.88,ECR-EHR Core Research,ECR-EHR Core Research
+12,7261,716689.46,Project & Program Evaluation,Project & Program Evaluation
+12,1997,2526418.28,NRT,NSF Research Traineeship (NRT)
+12,8060,2807826.17,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+12,1668,2860166.5,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+12,7172,8452533.26,Graduate Research Fellowship,Graduate Research Fellowship
+13,055Y,4928.43,CISE Education and Workforce,CISE Education and Workforce
+13,1998,4928.43,IUSE,Imploving Undergraduate STEM Education (IUSE)
+13,062Y,9791.11,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+13,7259,9791.11,AISL,Advencing Informal STEM Learning
+13,7959,11794,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+13,1253,20134.23,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+13,7699,23893.78,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+13,7645,27424.06,Discovery Research K-12,Discovery Research K-12
+13,8624,29860.29,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+13,154Y,35776.77,GVF - Global Venture Fund,GVF - Global Venture Fund
+13,9150,38269.07,EPSCoR Co-Funding,EPSCoR Co-Funding
+13,125Y,43276.71,Science of Science,Science of Science
+13,1536,45001.79,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+13,7412,49038.77,Advanced Tech Education Prog,Advanced Tech Education Prog
+13,107Y,55727.55,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+13,7275,59270.5,Cross-EF Activities,Cross-EF Activities
+13,104Y,69733.78,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+13,162Y,224052.65,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+13,8060,540703.74,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+13,7261,1147210.24,Project & Program Evaluation,Project & Program Evaluation
+13,1668,1822737.7,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+13,1997,3630484.8,NRT,NSF Research Traineeship (NRT)
+13,7980,4263040.29,ECR-EHR Core Research,ECR-EHR Core Research
+13,7172,12796847.8,Graduate Research Fellowship,Graduate Research Fellowship
+14,055Y,1232.11,CISE Education and Workforce,CISE Education and Workforce
+14,1998,1232.11,IUSE,Imploving Undergraduate STEM Education (IUSE)
+14,7645,11753.17,Discovery Research K-12,Discovery Research K-12
+14,7959,14742.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+14,062Y,27415.12,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+14,7259,27415.12,AISL,Advencing Informal STEM Learning
+14,8624,29273.14,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+14,7699,42477.83,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+14,7275,54711.23,Cross-EF Activities,Cross-EF Activities
+14,107Y,60371.52,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+14,1536,63510.92,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+14,7412,65125.71,Advanced Tech Education Prog,Advanced Tech Education Prog
+14,104Y,67330.86,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+14,154Y,133534.37,GVF - Global Venture Fund,GVF - Global Venture Fund
+14,125Y,134385.59,Science of Science,Science of Science
+14,162Y,143877,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+14,9150,195167.3,EPSCoR Co-Funding,EPSCoR Co-Funding
+14,1253,231543.62,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+14,8060,694516.36,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+14,7980,1028380.18,ECR-EHR Core Research,ECR-EHR Core Research
+14,7261,1655332.46,Project & Program Evaluation,Project & Program Evaluation
+14,1668,2227382.05,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+14,1997,7502359.09,NRT,NSF Research Traineeship (NRT)
+14,7172,20777190.56,Graduate Research Fellowship,Graduate Research Fellowship
+15,055Y,3696.32,CISE Education and Workforce,CISE Education and Workforce
+15,1998,3696.32,IUSE,Imploving Undergraduate STEM Education (IUSE)
+15,062Y,5874.67,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+15,7259,5874.67,AISL,Advencing Informal STEM Learning
+15,7645,11753.17,Discovery Research K-12,Discovery Research K-12
+15,125Y,13666.33,Science of Science,Science of Science
+15,7275,18237.08,Cross-EF Activities,Cross-EF Activities
+15,1253,20134.23,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+15,8624,25528.74,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+15,9150,27523.58,EPSCoR Co-Funding,EPSCoR Co-Funding
+15,7699,29203.51,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+15,7959,35382,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+15,154Y,40905.99,GVF - Global Venture Fund,GVF - Global Venture Fund
+15,107Y,51083.59,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+15,104Y,60339.9,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+15,1536,78539.14,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+15,7412,84998.31,Advanced Tech Education Prog,Advanced Tech Education Prog
+15,162Y,204454.87,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+15,7980,707232.62,ECR-EHR Core Research,ECR-EHR Core Research
+15,7261,1265029.69,Project & Program Evaluation,Project & Program Evaluation
+15,8060,1562369.82,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+15,1668,2582616.91,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+15,1997,3325184.41,NRT,NSF Research Traineeship (NRT)
+15,7172,16589032.67,Graduate Research Fellowship,Graduate Research Fellowship
+16,055Y,1642.81,CISE Education and Workforce,CISE Education and Workforce
+16,1998,1642.81,IUSE,Imploving Undergraduate STEM Education (IUSE)
+16,062Y,9791.11,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+16,7259,9791.11,AISL,Advencing Informal STEM Learning
+16,1253,15100.67,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+16,7645,15670.89,Discovery Research K-12,Discovery Research K-12
+16,107Y,18575.85,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+16,1536,30653.18,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+16,104Y,30835.96,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+16,7275,31914.88,Cross-EF Activities,Cross-EF Activities
+16,154Y,32626.54,GVF - Global Venture Fund,GVF - Global Venture Fund
+16,7412,34690.16,Advanced Tech Education Prog,Advanced Tech Education Prog
+16,8624,46616.56,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+16,7699,50442.42,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+16,7959,61918.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+16,125Y,68331.65,Science of Science,Science of Science
+16,9150,116112.63,EPSCoR Co-Funding,EPSCoR Co-Funding
+16,162Y,224104.21,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+16,8060,659737.44,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+16,1668,1657035.26,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+16,7980,1705169.85,ECR-EHR Core Research,ECR-EHR Core Research
+16,7261,2165791.65,Project & Program Evaluation,Project & Program Evaluation
+16,1997,7285433.73,NRT,NSF Research Traineeship (NRT)
+16,7172,16589032.67,Graduate Research Fellowship,Graduate Research Fellowship
+17,055Y,821.41,CISE Education and Workforce,CISE Education and Workforce
+17,1998,821.41,IUSE,Imploving Undergraduate STEM Education (IUSE)
+17,7699,5309.73,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+17,7959,5897,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+17,125Y,6833.17,Science of Science,Science of Science
+17,7645,11753.17,Discovery Research K-12,Discovery Research K-12
+17,107Y,13931.89,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+17,1536,31415.66,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+17,7412,33030.45,Advanced Tech Education Prog,Advanced Tech Education Prog
+17,062Y,33289.78,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+17,7259,33289.78,AISL,Advencing Informal STEM Learning
+17,1253,35234.9,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+17,154Y,38390.13,GVF - Global Venture Fund,GVF - Global Venture Fund
+17,7275,45592.69,Cross-EF Activities,Cross-EF Activities
+17,104Y,73128.04,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+17,9150,111736.79,EPSCoR Co-Funding,EPSCoR Co-Funding
+17,162Y,212182.72,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+17,8624,466436.72,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+17,8060,683130.7,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+17,1668,1271381.56,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+17,7980,1335453.84,ECR-EHR Core Research,ECR-EHR Core Research
+17,7261,1785501.13,Project & Program Evaluation,Project & Program Evaluation
+17,1997,5828123.08,NRT,NSF Research Traineeship (NRT)
+17,7172,8728597.83,Graduate Research Fellowship,Graduate Research Fellowship
+18,055Y,2053.51,CISE Education and Workforce,CISE Education and Workforce
+18,1998,2053.51,IUSE,Imploving Undergraduate STEM Education (IUSE)
+18,125Y,9110.89,Science of Science,Science of Science
+18,1253,10067.11,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+18,062Y,13707.56,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+18,7259,13707.56,AISL,Advencing Informal STEM Learning
+18,7645,15670.89,Discovery Research K-12,Discovery Research K-12
+18,8624,22744.16,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+18,7959,26536.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+18,7275,31914.88,Cross-EF Activities,Cross-EF Activities
+18,7699,58407.02,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+18,1536,90386.99,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+18,7412,95231.37,Advanced Tech Education Prog,Advanced Tech Education Prog
+18,154Y,120471.65,GVF - Global Venture Fund,GVF - Global Venture Fund
+18,9150,121883.64,EPSCoR Co-Funding,EPSCoR Co-Funding
+18,107Y,199690.4,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+18,104Y,212361.75,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+18,162Y,217535.9,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+18,8060,735325.17,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+18,7980,1333564.67,ECR-EHR Core Research,ECR-EHR Core Research
+18,7261,1352889.53,Project & Program Evaluation,Project & Program Evaluation
+18,1668,2810636.72,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+18,1997,4524031.76,NRT,NSF Research Traineeship (NRT)
+18,7172,8650519.51,Graduate Research Fellowship,Graduate Research Fellowship
+19,055Y,2464.22,CISE Education and Workforce,CISE Education and Workforce
+19,1998,2464.22,IUSE,Imploving Undergraduate STEM Education (IUSE)
+19,7699,7964.59,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+19,125Y,9110.89,Science of Science,Science of Science
+19,062Y,15665.78,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+19,7259,15665.78,AISL,Advencing Informal STEM Learning
+19,7959,17691,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+19,7645,19588.61,Discovery Research K-12,Discovery Research K-12
+19,107Y,23219.81,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+19,8624,23760.3,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+19,1536,31249.92,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+19,1253,35234.9,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+19,7412,42553.47,Advanced Tech Education Prog,Advanced Tech Education Prog
+19,7275,50151.96,Cross-EF Activities,Cross-EF Activities
+19,154Y,54777.31,GVF - Global Venture Fund,GVF - Global Venture Fund
+19,9150,63374.46,EPSCoR Co-Funding,EPSCoR Co-Funding
+19,104Y,85103.93,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+19,162Y,120831.69,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+19,8060,679674.43,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+19,7980,914694.83,ECR-EHR Core Research,ECR-EHR Core Research
+19,7261,1291416.37,Project & Program Evaluation,Project & Program Evaluation
+19,1668,2242989.57,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+19,1997,4350673.09,NRT,NSF Research Traineeship (NRT)
+19,7172,20895238.19,Graduate Research Fellowship,Graduate Research Fellowship
+20,055Y,1642.81,CISE Education and Workforce,CISE Education and Workforce
+20,1998,1642.81,IUSE,Imploving Undergraduate STEM Education (IUSE)
+20,062Y,3916.45,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+20,7259,3916.45,AISL,Advencing Informal STEM Learning
+20,7645,3917.72,Discovery Research K-12,Discovery Research K-12
+20,7699,7964.59,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+20,125Y,13666.33,Science of Science,Science of Science
+20,7959,14742.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+20,8624,24927.63,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+20,7275,31914.88,Cross-EF Activities,Cross-EF Activities
+20,1536,41284.59,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+20,7412,55817.72,Advanced Tech Education Prog,Advanced Tech Education Prog
+20,107Y,60371.52,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+20,9150,75958.82,EPSCoR Co-Funding,EPSCoR Co-Funding
+20,154Y,78857.36,GVF - Global Venture Fund,GVF - Global Venture Fund
+20,1253,120805.37,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+20,104Y,156436.41,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+20,162Y,186820.2,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+20,8060,616353.72,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+20,7980,880468.68,ECR-EHR Core Research,ECR-EHR Core Research
+20,7261,1277590.63,Project & Program Evaluation,Project & Program Evaluation
+20,1668,3331237.98,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+20,1997,5096014.86,NRT,NSF Research Traineeship (NRT)
+20,7172,20775330.27,Graduate Research Fellowship,Graduate Research Fellowship
+21,055Y,821.41,CISE Education and Workforce,CISE Education and Workforce
+21,1998,821.41,IUSE,Imploving Undergraduate STEM Education (IUSE)
+21,062Y,5874.67,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+21,7259,5874.67,AISL,Advencing Informal STEM Learning
+21,125Y,6833.17,Science of Science,Science of Science
+21,7645,7835.45,Discovery Research K-12,Discovery Research K-12
+21,7699,7964.59,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+21,7959,11794,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+21,7275,13677.81,Cross-EF Activities,Cross-EF Activities
+21,8624,17818.49,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+21,107Y,23219.81,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+21,1536,34931.83,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+21,1253,35234.9,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+21,7412,37354.02,Advanced Tech Education Prog,Advanced Tech Education Prog
+21,154Y,43934.5,GVF - Global Venture Fund,GVF - Global Venture Fund
+21,162Y,72112.43,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+21,104Y,105765.14,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+21,9150,203804.58,EPSCoR Co-Funding,EPSCoR Co-Funding
+21,7980,474132.52,ECR-EHR Core Research,ECR-EHR Core Research
+21,8060,987076.28,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+21,7261,1609602.31,Project & Program Evaluation,Project & Program Evaluation
+21,1668,1621961.64,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+21,1997,5561898.26,NRT,NSF Research Traineeship (NRT)
+21,7172,8452533.26,Graduate Research Fellowship,Graduate Research Fellowship
+22,055Y,4107.03,CISE Education and Workforce,CISE Education and Workforce
+22,1998,4107.03,IUSE,Imploving Undergraduate STEM Education (IUSE)
+22,7645,9794.31,Discovery Research K-12,Discovery Research K-12
+22,7699,13274.32,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+22,062Y,13707.56,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+22,7259,13707.56,AISL,Advencing Informal STEM Learning
+22,8624,18785.27,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+22,7275,22796.34,Cross-EF Activities,Cross-EF Activities
+22,125Y,36443.55,Science of Science,Science of Science
+22,154Y,40905.99,GVF - Global Venture Fund,GVF - Global Venture Fund
+22,7959,47176,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+22,104Y,67685.16,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+22,9150,70930.16,EPSCoR Co-Funding,EPSCoR Co-Funding
+22,107Y,83591.33,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+22,1253,85570.47,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+22,162Y,140820.26,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+22,1536,815151.95,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+22,8060,848273.35,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+22,7412,902350.73,Advanced Tech Education Prog,Advanced Tech Education Prog
+22,7261,1184477.15,Project & Program Evaluation,Project & Program Evaluation
+22,7980,1496922.28,ECR-EHR Core Research,ECR-EHR Core Research
+22,1997,3967479.51,NRT,NSF Research Traineeship (NRT)
+22,1668,5062937.3,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+22,7172,167786752.5,Graduate Research Fellowship,Graduate Research Fellowship
+23,7645,5876.58,Discovery Research K-12,Discovery Research K-12
+23,055Y,6160.54,CISE Education and Workforce,CISE Education and Workforce
+23,1998,6160.54,IUSE,Imploving Undergraduate STEM Education (IUSE)
+23,125Y,6833.17,Science of Science,Science of Science
+23,7699,7964.59,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+23,7959,8845.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+23,8624,9313.55,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+23,062Y,13707.56,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+23,7259,13707.56,AISL,Advencing Informal STEM Learning
+23,1253,15100.67,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+23,7275,27355.61,Cross-EF Activities,Cross-EF Activities
+23,154Y,33456.55,GVF - Global Venture Fund,GVF - Global Venture Fund
+23,107Y,46439.63,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+23,9150,54612.59,EPSCoR Co-Funding,EPSCoR Co-Funding
+23,162Y,77141.85,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+23,104Y,101960.4,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+23,7980,459828.76,ECR-EHR Core Research,ECR-EHR Core Research
+23,1536,654988.18,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+23,7412,685669.23,Advanced Tech Education Prog,Advanced Tech Education Prog
+23,7261,834366.44,Project & Program Evaluation,Project & Program Evaluation
+23,8060,1010581.54,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+23,1997,2527595.54,NRT,NSF Research Traineeship (NRT)
+23,7172,24843579.7,Graduate Research Fellowship,Graduate Research Fellowship
+23,1668,33261403.29,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+24,055Y,1232.11,CISE Education and Workforce,CISE Education and Workforce
+24,1998,1232.11,IUSE,Imploving Undergraduate STEM Education (IUSE)
+24,125Y,6833.17,Science of Science,Science of Science
+24,7699,10619.46,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+24,062Y,13707.56,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+24,7259,13707.56,AISL,Advencing Informal STEM Learning
+24,7275,18237.08,Cross-EF Activities,Cross-EF Activities
+24,7645,19588.61,Discovery Research K-12,Discovery Research K-12
+24,107Y,23219.81,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+24,154Y,24714.44,GVF - Global Venture Fund,GVF - Global Venture Fund
+24,1536,41402.74,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+24,9150,42029.56,EPSCoR Co-Funding,EPSCoR Co-Funding
+24,8624,45959.66,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+24,7412,47054.51,Advanced Tech Education Prog,Advanced Tech Education Prog
+24,7959,64867,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+24,1253,65436.24,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+24,104Y,75755.07,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+24,162Y,142197.87,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+24,7261,954736.47,Project & Program Evaluation,Project & Program Evaluation
+24,7980,1248250.03,ECR-EHR Core Research,ECR-EHR Core Research
+24,8060,1423873.79,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+24,1668,1923530.54,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+24,1997,3253465,NRT,NSF Research Traineeship (NRT)
+24,7172,8452533.26,Graduate Research Fellowship,Graduate Research Fellowship
+25,055Y,1642.81,CISE Education and Workforce,CISE Education and Workforce
+25,1998,1642.81,IUSE,Imploving Undergraduate STEM Education (IUSE)
+25,125Y,9110.89,Science of Science,Science of Science
+25,7645,13712.03,Discovery Research K-12,Discovery Research K-12
+25,1253,20134.23,Office of Multidisciplinary Ac,Office of Multidisciplinary Activities
+25,8624,21534.98,IntgStrat Undst Neurl&Cogn Sys,IntgStrat Undst Neurl&Cogn Sys
+25,107Y,23219.81,WoU-Windows on the Universe: T,WoU-Windows on the Universe: The Era of Multi-messenger Astrophysics
+25,1536,27136.99,S-STEM:Schlr Sci Tech Eng&Math,"S-STEM: Scholarships in Sci, Tech, Eng, and Math"
+25,7412,30366.57,Advanced Tech Education Prog,Advanced Tech Education Prog
+25,062Y,62663.12,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+25,7259,62663.12,AISL,Advencing Informal STEM Learning
+25,7699,92920.26,Integrat & Collab Ed & Rsearch,Integrat & Collab Ed & Rsearch
+25,7275,95744.65,Cross-EF Activities,Cross-EF Activities
+25,162Y,97354.44,GCR-Growing Convergence Research,GCR-Growing Convergence Research
+25,9150,111348.32,EPSCoR Co-Funding,EPSCoR Co-Funding
+25,7959,209343.5,MacroSysBIO & NEON-Enabled,MacroSysBIO & NEON-Enabled Science
+25,8060,416804.42,Secure &Trustworthy Cyberspace,Secure and Trustworthy Cyberspace
+25,154Y,542896.2,GVF - Global Venture Fund,GVF - Global Venture Fund
+25,7980,582066.45,ECR-EHR Core Research,ECR-EHR Core Research
+25,104Y,1134952.85,NNA-Navigating the New Arctic,NNA-Navigating the New Arctic
+25,1668,1559093.33,CYBERCORPS: SCHLAR FOR SER,CYBERCORPS: SCHLAR FOR SER
+25,7261,5909142.33,Project & Program Evaluation,Project & Program Evaluation
+25,7172,8452533.26,Graduate Research Fellowship,Graduate Research Fellowship
+25,1997,14418411.6,NRT,NSF Research Traineeship (NRT)
