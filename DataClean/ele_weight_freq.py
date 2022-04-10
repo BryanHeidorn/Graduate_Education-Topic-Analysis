@@ -44,7 +44,7 @@ while(i < 26):
 
     # put temp dic to result df
     for t in dic:
-        w_freq_result = w_freq_result.append({'topic':i, 'ele_code':t[0], 'weight_freq': round(t[1], 2)}, ignore_index=True)
+        w_freq_result = w_freq_result.append({'topic':i, 'ele_code':t[0], 'weight_freq': round(t[1], 3)}, ignore_index=True)
 
     i += 1
 
