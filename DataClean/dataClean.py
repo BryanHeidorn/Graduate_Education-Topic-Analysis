@@ -1,3 +1,6 @@
+# Clean data
+# Author: Songyi Zheng
+
 import pandas as pd
 import numpy as np
 
