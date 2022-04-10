@@ -1,4 +1,6 @@
 # draw element code frequency and name
+# Author: Songyi Zheng
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt

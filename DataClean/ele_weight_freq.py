@@ -1,4 +1,6 @@
 # deal with find the weight frequency of element code in each topic
+# Author: Songyi Zheng
+
 import pandas as pd
 import numpy as np
 

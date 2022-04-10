@@ -1,4 +1,6 @@
 # deal with find the frequency of element code in each topic
+# Author: Songyi Zheng
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
